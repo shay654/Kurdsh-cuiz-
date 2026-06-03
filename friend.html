@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #ffe5ec; /* باکگراوندی پەمەیی نازدار */
+            background-color: #ffe5ec;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,7 +27,7 @@
             animation: fadeIn 0.5s ease-in-out;
         }
         h2 {
-            color: #6c5ce7; /* تێکستی مۆری سەرەکی */
+            color: #6c5ce7;
             margin-bottom: 25px;
             font-size: 22px;
             line-height: 1.5;
@@ -79,7 +79,6 @@
 </head>
 <body>
 
-    <!-- ١. لاپەڕەی یەکەم: پێشوازی -->
     <div class="card" id="screen-welcome">
         <div class="ribbon-icon">🥺🎀</div>
         <h2>بەخێربێیت باشترین هاوڕێم</h2>
@@ -88,7 +87,6 @@
         </div>
     </div>
 
-    <!-- ٢. لاپەڕەی دووەم: پرسیاری یەکەم -->
     <div class="card" id="screen-q1" style="display: none;">
         <div class="ribbon-icon">🔮🧚‍♀️</div>
         <h2>ئایا پەیوەندیمان وەک پەیوەندی کام لەمانەیە؟</h2>
@@ -99,7 +97,6 @@
         </div>
     </div>
 
-    <!-- ٣. لاپەڕەی سێیەم: وەڵامی تۆم و جێری -->
     <div class="card" id="screen-tom-jerry" style="display: none;">
         <div class="ribbon-icon">😜😂</div>
         <h2>کامتان تۆم و کامتان جێری؟ شێتە ئێمە پەیوەندیمان زۆر لەوان جوانترە 😌</h2>
@@ -108,16 +105,14 @@
         </div>
     </div>
 
-    <!-- ٤. لاپەڕەی چوارەم: وەڵامی ئاو و ئاگر -->
     <div class="card" id="screen-water-fire" style="display: none;">
         <div class="ribbon-icon">🌊🔥</div>
-        <h2>ناا، ئێمە هیچ کات وەک ئاو و ئاگر نەبووین! 😋</h2>
+        <h2>ناا, ئێمە هیچ کات وەک ئاو و ئاگر نەبووین! 😋</h2>
         <div class="btn-container">
             <button class="btn gray-btn" onclick="showScreen('screen-q1')">گەڕانەوە ↩️</button>
         </div>
     </div>
 
-    <!-- ٥. لاپەڕەی پێنجەم: وەڵامی تای و جۆنکووک (پرسیاری دووەم) -->
     <div class="card" id="screen-tae-kook" style="display: none;">
         <div class="ribbon-icon">👑💜🔥</div>
         <h2>یەسسسسسسسس ڕاستە بەڵێ ئێمە جوانترینین ئێستە پێم بڵێ تۆ کێت خۆشدەوێت؟</h2>
@@ -127,17 +122,14 @@
         </div>
     </div>
 
-    <!-- ٦. لاپەڕەی شەشەم: وەڵامی قرشەکەت (بینینی ڤیدیۆ) -->
     <div class="card" id="screen-shark" style="display: none;">
         <video id="my-video" class="quiz-video" controls loop playsinline>
-            <!-- لێرەدا ناوی تەواوی فایلە درێژەکەمان داناوە بۆ ئەوەی ڕاستەوخۆ بیخوێنێتەوە -->
-            <source src="jungkook closing his eyes and smiling in tae embrace from all angle and im not okay 😭😭 #taekoo.mp4" type="video/mp4">
+            <source src="taekook.mp4" type="video/mp4">
             براوزەرەکەت پاڵپشتی ڤیدیۆ ناکات.
         </video>
         <h2>تۆ هەمیشە دڵخوازی منی! 💖✨👭</h2>
     </div>
 
-    <!-- ٧. لاپەڕەی حەوتەم: وەڵامی ڕەنە -->
     <div class="card" id="screen-rana" style="display: none;">
         <div class="ribbon-icon">🥺💔</div>
         <h2>ئێمە وامان لێ هات؟ 🥺💔</h2>
