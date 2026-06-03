@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پڕۆژەی کارلێکەر</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffe6ea;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        #yesBtn {
+            background-color: #2ec4b6;
+            color: white;
+        }
+        #noBtn {
+            background-color: #ff4d6d;
+            color: white;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="question">ئایا دەتەوێت پێکەوە فێری کۆدکردن ببین؟ 🚀</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="answeredYes()">بەڵێ 😍</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">نەخێر 😜</button>
+        </div>
+    </div>
+
+    <script>
+        // ئەم بەشە وادەکات دوگمەی نەخێر ڕابکات کاتێک مشک یان پەنجەی بەردەکەوێت
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 50);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50);
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        // ئەم بەشە بۆ کاتێکە کە کلیک لە بەڵێ دەکات
+        function answeredYes() {
+            document.getElementById('question').innerHTML = "بژیت! کەواتە با دەست پێبکەین 🎉🥳";
+            document.querySelector('.buttons').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
