@@ -3,98 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تاقیکردنەوەی هاوڕێیەتی کۆن و شیرینمان 🌟</title>
+    <title>باشترین هاوڕێی ژیانم 🎀</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e8f0fe;
+            background-color: #ffe5ec; /* باکگراوندی پەمەیی نازدار */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
-        .quiz-card {
-            background-color: white;
+        .card {
+            background-color: rgba(255, 255, 255, 0.95);
             padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(255, 77, 109, 0.15);
             text-align: center;
             max-width: 450px;
             width: 90%;
-            transition: 0.5s;
+            border: 3px solid #f8ad9d;
+            animation: fadeIn 0.5s ease-in-out;
         }
         h2 {
-            color: #1a73e8;
-            margin-bottom: 20px;
+            color: #6c5ce7; /* تێکستی مۆری سەرەکی */
+            margin-bottom: 25px;
             font-size: 22px;
+            line-height: 1.5;
         }
-        .btn-group {
+        .ribbon-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: float 2s infinite alternate;
+        }
+        .quiz-video {
+            width: 100%;
+            max-width: 280px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .btn-container {
             display: flex;
             flex-direction: column;
             gap: 12px;
+            margin-top: 15px;
         }
-        .option-btn {
-            padding: 12px;
+        .btn {
+            padding: 14px;
             font-size: 16px;
-            border: 2px solid #1a73e8;
-            border-radius: 12px;
-            background-color: white;
-            color: #1a73e8;
+            border: none;
+            border-radius: 50px;
             cursor: pointer;
-            transition: 0.3s;
             font-weight: bold;
-        }
-        .option-btn:hover {
-            background-color: #1a73e8;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             color: white;
         }
-        #result-box {
-            display: none;
+        .btn:hover {
+            transform: scale(1.03);
         }
-        .heart {
-            color: #ff4d6d;
-            font-size: 50px;
-            animation: beat 0.6s infinite alternate;
-        }
-        @keyframes beat {
-            to { transform: scale(1.2); }
-        }
+        /* ڕەنگی دوگمەکان ڕێک بەپێی ویستی خۆت */
+        .purple-main-btn { background: linear-gradient(135deg, #a29bfe, #6c5ce7); box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); }
+        .blue-btn { background-color: #3498db; } /* ڕەنگی شین */
+        .purple-btn { background-color: #6c5ce7; } /* ڕەنگی مۆر */
+        .orange-btn { background-color: #e67e22; } /* ڕەنگی ئاو و ئاگر */
+        .gray-btn { background-color: #a4b0be; margin-top: 15px; } 
+
+        @keyframes float { to { transform: translateY(-10px); } }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
 
-    <!-- بەشی پرسیارەکان -->
-    <div class="quiz-card" id="quiz-box">
-        <h2 id="question-text">با بزانم چەند دەمبەیتەوە! پێکەوە حەزمان لە چییە؟ 🍓🌈</h2>
-        <div class="btn-group">
-            <button class="option-btn" onclick="nextQuestion(true)">دروستکردنی کاری دەستی و مۆنتاژ و چێشتلێنان 🎨✨</button>
-            <button class="option-btn" onclick="nextQuestion(false)">تەنها خەوتن و کات بەفیڕۆدان 😴</button>
-            <button class="option-btn" onclick="nextQuestion(false)">بێزارکردنی یەکتر بەبێ هۆکار 🙉</button>
+    <div class="card" id="screen-welcome">
+        <div class="ribbon-icon">🥺🎀</div>
+        <h2>بەخێربێیت باشترین هاوڕێم</h2>
+        <div class="btn-container">
+            <button class="btn purple-main-btn" onclick="showScreen('screen-q1')">کلیک بکە بۆ ناو ژیانم ✨</button>
         </div>
     </div>
 
-    <!-- بەشی کۆتایی و نامە شیرینەکە -->
-    <div class="quiz-card" id="result-box">
-        <div class="heart">❤️</div>
-        <h2>تۆ باشترین هاوڕێی منی! ✨</h2>
-        <p style="font-size: 18px; color: #5f6368; line-height: 1.6;">
-            گرنگ نییە وەڵامەکانت چی بوون، چونکە بەهای هاوڕێیەتی ئێمە لە هەموو شتێک گەورەترە. تێپەڕبوونی ساڵەکان تەنها ئەوە دەسەلمێنن کە تۆ دیارترین و جوانترین بەشی ژیانی منی. هەمیشە پێکەوە دەمێنینەوە! 👭💕
-        </p>
+    <div class="card" id="screen-q1" style="display: none;">
+        <div class="ribbon-icon">🔮🧚‍♀️</div>
+        <h2>ئایا پەیوەندیمان وەک پەیوەندی کام لەمانەیە؟</h2>
+        <div class="btn-container">
+            <button class="btn blue-btn" onclick="showScreen('screen-tom-jerry')">تۆم و جێری 🐱🐭</button>
+            <button class="btn purple-btn" onclick="showScreen('screen-tae-kook')">تای و جۆنکووک 🐯🐰</button>
+            <button class="btn orange-btn" onclick="showScreen('screen-water-fire')">ئاو و ئاگر 🔥💧</button>
+        </div>
+    </div>
+
+    <div class="card" id="screen-tom-jerry" style="display: none;">
+        <div class="ribbon-icon">😜😂</div>
+        <h2>کامتان تۆم و کامتان جێری؟ شێتە ئێمە پەیوەندیمان زۆر لەوان جوانترە 😌</h2>
+        <div class="btn-container">
+            <button class="btn gray-btn" onclick="showScreen('screen-q1')">گەڕانەوە ↩️</button>
+        </div>
+    </div>
+
+    <div class="card" id="screen-water-fire" style="display: none;">
+        <div class="ribbon-icon">🌊🔥</div>
+        <h2>ناا، ئێمە هیچ کات وەک ئاو و ئاگر نەبووین! 😋</h2>
+        <div class="btn-container">
+            <button class="btn gray-btn" onclick="showScreen('screen-q1')">گەڕانەوە ↩️</button>
+        </div>
+    </div>
+
+    <div class="card" id="screen-tae-kook" style="display: none;">
+        <div class="ribbon-icon">👑💜🔥</div>
+        <h2>یەسسسسسسسس ڕاستە بەڵێ ئێمە جوانترینین ئێستە پێم بڵێ تۆ کێت خۆشدەوێت؟</h2>
+        <div class="btn-container">
+            <button class="btn purple-main-btn" onclick="showScreen('screen-shark')">قرشەکەت 🦈</button>
+            <button class="btn orange-btn" onclick="showScreen('screen-rana')">ڕەنە 🐸</button>
+        </div>
+    </div>
+
+    <div class="card" id="screen-shark" style="display: none;">
+        <video id="my-video" class="quiz-video" controls loop playsinline>
+            <source src="taekoo.mp4" type="video/mp4">
+            براوزەرەکەت پاڵپشتی ڤیدیۆ ناکات.
+        </video>
+        <h2>تۆ هەمیشە دڵخوازی منی! 💖✨👭</h2>
+    </div>
+
+    <div class="card" id="screen-rana" style="display: none;">
+        <div class="ribbon-icon">🥺💔</div>
+        <h2>ئێمە وامان لێ هات؟ 🥺💔</h2>
+        <div class="btn-container">
+            <button class="btn gray-btn" onclick="showScreen('screen-tae-kook')">بگەرێوە ↩️</button>
+        </div>
     </div>
 
     <script>
-        function nextQuestion(isCorrect) {
-            // ڕاستەوخۆ دەیباتە سەر لاپەڕەی کۆتایی و نامە جوانەکە
-            document.getElementById('quiz-box').style.display = 'none';
-            const resultBox = document.getElementById('result-box');
-            resultBox.style.display = 'block';
+        function showScreen(screenId) {
+            const screens = ['screen-welcome', 'screen-q1', 'screen-tom-jerry', 'screen-water-fire', 'screen-tae-kook', 'screen-shark', 'screen-rana'];
+            screens.forEach(id => {
+                document.getElementById(id).style.display = 'none';
+            });
             
-            if(isCorrect) {
-                // ئەگەر وەڵامی ڕاستی هەڵبژارد، با پیرۆزبایی لێبکات پێش نامەکە
-                resultBox.querySelector('h2').innerHTML = "١٠٠٪ ڕاستە! تۆ من بە تەواوی دەناسیت 😍";
+            const activeScreen = document.getElementById(screenId);
+            activeScreen.style.display = 'block';
+            
+            const video = document.getElementById('my-video');
+            if (screenId === 'screen-shark') {
+                video.currentTime = 0;
+                video.play().catch(e => console.log("Video play blocked"));
             } else {
-                resultBox.querySelector('h2').innerHTML = "هەرچەندە وەڵامەکەت هەڵە بوو، بەڵام هێشتا... 😂❤️";
+                video.pause();
             }
         }
     </script>
