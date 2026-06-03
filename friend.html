@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تاقیکردنەوەی هاوڕێیەتی کۆن و شیرینمان 🌟</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8f0fe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .quiz-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            transition: 0.5s;
+        }
+        h2 {
+            color: #1a73e8;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .option-btn {
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #1a73e8;
+            border-radius: 12px;
+            background-color: white;
+            color: #1a73e8;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .option-btn:hover {
+            background-color: #1a73e8;
+            color: white;
+        }
+        #result-box {
+            display: none;
+        }
+        .heart {
+            color: #ff4d6d;
+            font-size: 50px;
+            animation: beat 0.6s infinite alternate;
+        }
+        @keyframes beat {
+            to { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- بەشی پرسیارەکان -->
+    <div class="quiz-card" id="quiz-box">
+        <h2 id="question-text">با بزانم چەند دەمبەیتەوە! پێکەوە حەزمان لە چییە؟ 🍓🌈</h2>
+        <div class="btn-group">
+            <button class="option-btn" onclick="nextQuestion(true)">دروستکردنی کاری دەستی و مۆنتاژ و چێشتلێنان 🎨✨</button>
+            <button class="option-btn" onclick="nextQuestion(false)">تەنها خەوتن و کات بەفیڕۆدان 😴</button>
+            <button class="option-btn" onclick="nextQuestion(false)">بێزارکردنی یەکتر بەبێ هۆکار 🙉</button>
+        </div>
+    </div>
+
+    <!-- بەشی کۆتایی و نامە شیرینەکە -->
+    <div class="quiz-card" id="result-box">
+        <div class="heart">❤️</div>
+        <h2>تۆ باشترین هاوڕێی منی! ✨</h2>
+        <p style="font-size: 18px; color: #5f6368; line-height: 1.6;">
+            گرنگ نییە وەڵامەکانت چی بوون، چونکە بەهای هاوڕێیەتی ئێمە لە هەموو شتێک گەورەترە. تێپەڕبوونی ساڵەکان تەنها ئەوە دەسەلمێنن کە تۆ دیارترین و جوانترین بەشی ژیانی منی. هەمیشە پێکەوە دەمێنینەوە! 👭💕
+        </p>
+    </div>
+
+    <script>
+        function nextQuestion(isCorrect) {
+            // ڕاستەوخۆ دەیباتە سەر لاپەڕەی کۆتایی و نامە جوانەکە
+            document.getElementById('quiz-box').style.display = 'none';
+            const resultBox = document.getElementById('result-box');
+            resultBox.style.display = 'block';
+            
+            if(isCorrect) {
+                // ئەگەر وەڵامی ڕاستی هەڵبژارد، با پیرۆزبایی لێبکات پێش نامەکە
+                resultBox.querySelector('h2').innerHTML = "١٠٠٪ ڕاستە! تۆ من بە تەواوی دەناسیت 😍";
+            } else {
+                resultBox.querySelector('h2').innerHTML = "هەرچەندە وەڵامەکەت هەڵە بوو، بەڵام هێشتا... 😂❤️";
+            }
+        }
+    </script>
+
+</body>
+</html>
