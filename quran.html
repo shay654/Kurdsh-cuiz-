@@ -3,59 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ 🌿✨</title>
+    <title>گەشتێک بەرەو ئارامیی دڵ 🌿</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5ebe0, #e3d5ca);
+            background: linear-gradient(135deg, #0f172a, #1e293b);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             overflow: hidden;
-            color: #4e3526;
+            color: #f8fafc;
+            transition: background 1.5s ease;
         }
-        .container {
-            background-color: rgba(255, 255, 255, 0.85);
+        .card {
+            background: rgba(255, 255, 255, 0.06);
             padding: 40px 30px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(78, 53, 38, 0.15);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
             text-align: center;
-            max-width: 480px;
+            max-width: 450px;
             width: 90%;
-            backdrop-filter: blur(10px);
-            border: 2px solid #d5bdaf;
-            transition: all 0.5s ease;
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none; /* هەموو لاپەڕەکان سەرەتا دەشاردرێنەوە */
+        }
+        .card.active {
+            display: block; /* تەنها لاپەڕەی چالاک پیشان دەدرێت */
+            animation: fadeIn 0.8s ease forwards;
         }
         h1 {
             font-size: 24px;
-            color: #6f4e37;
-            margin-bottom: 10px;
+            color: #38bdf8;
+            margin-bottom: 15px;
         }
         p {
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.7;
+            color: #cbd5e1;
             margin-bottom: 25px;
         }
-        .cup-container {
-            font-size: 80px;
-            margin: 20px 0;
-            position: relative;
-            animation: float 3s ease-in-out infinite;
-        }
-        /* ئەنیمەیشنی دووکەڵەکە */
-        .steam {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 20px;
-            opacity: 0;
-            animation: steamUp 4s linear infinite;
-        }
         .btn {
-            background: linear-gradient(135deg, #8b5a2b, #6f4e37);
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
             color: white;
             padding: 14px 28px;
             font-size: 16px;
@@ -63,62 +53,116 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 8px 15px rgba(111, 78, 55, 0.3);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            margin: 5px;
+            width: 100%;
+            box-sizing: border-box;
         }
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 20px rgba(111, 78, 55, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .btn-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #f1f5f9;
         }
-        @keyframes steamUp {
-            0% { top: -10px; opacity: 0; transform: translateX(-50%) scale(0.8); }
-            50% { opacity: 0.5; transform: translateX(-40%) scale(1.1); }
-            100% { top: -50px; opacity: 0; transform: translateX(-60%) scale(1.4); }
+        .btn-option:hover {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+        .quran-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        .quran-btn:hover {
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+        .ayat {
+            font-size: 22px;
+            font-weight: bold;
+            color: #34d399;
+            margin: 20px 0;
+            direction: ltr;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="container" id="main-card">
-        <h1>سڵاو کەسی ئازیزم.. 🌿</h1>
-        <p>دەزانم ژیان کەمێک جەنجاڵە و ڕەنگە ئێستا ماندوو بیت. ئەم لاپەڕەیەم بە تایبەت بۆ تۆ دروستکردووە تا بۆ چەند خولەکێک هەموو شتێک دابنێیت و پشوو بدەیت.</p>
-        
-        <div class="cup-container">
-            <div class="steam">~~</div>
-            ☕
-        </div>
-
-        <!-- ئایەتی پیرۆز لە جێگەی وتەکە دانراوە -->
-        <p style="font-size: 19px; font-weight: bold; color: #8b5a2b; direction: ltr;">
-            "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"
-        </p>
-        
-        <!-- دوگمەی کۆنترۆڵکردنی دەنگی قورئانەکە -->
-        <button class="btn" id="quran-btn" onclick="toggleQuran()">کلیک بکە بۆ خوێندنەوەی قورئانی پیرۆز 📖</button>
+    <!-- قۆناغی ١: پێشوازی -->
+    <div class="card active" id="step1">
+        <div style="font-size: 50px; margin-bottom: 15px;">✨</div>
+        <h1>خۆشحاڵم کە لێرەیت..</h1>
+        <p>ئەم شوێنە بچووکە بۆ ئەوە دروستکراوە کە خولەکێک لە جەنجاڵی دنیا دووربکەویتەوە. حەز دەکەم چەند چرکەیەک قووڵ هەناسە بدەیت، پاشان با پێکەوە دەست پێبکەین.</p>
+        <button class="btn" onclick="nextStep(2)">بەرەو گەشتەکە لێخوڕە ➔</button>
     </div>
 
-    <!-- لێرەدا بەستەری دەنگی سوورەتی المُلک دانراوە -->
+    <!-- قۆناغی ٢: پرسیاری حاڵ و دۆخ -->
+    <div class="card" id="step2">
+        <div style="font-size: 50px; margin-bottom: 15px;">💭</div>
+        <h1>دۆخی ئێستات چۆنە؟</h1>
+        <p>بۆ ئەوەی بزانیت دڵت پێویستی بە چییە، پێم بڵێ ئێستا زیاتر چ هەستێک بەسەر مێشکتدا زالە؟</p>
+        <button class="btn btn-option" onclick="selectMood('ماندووم لە ڕاکەڕاکی ژیان و دەرسی زۆر')">هەست بە ماندووبوونی زۆر دەکەم 😮‍💨</button>
+        <button class="btn btn-option" onclick="selectMood('فیکرم سەرقاڵە و دڵم کەمێک تەنگە')">دڵم کەمێک گرتوویەتی 😔</button>
+        <button class="btn btn-option" onclick="selectMood('تەنها حەزم بە ساتێکی هێمن و بێدەنگە')">پێویستم بە هێمنییە 🌿</button>
+    </div>
+
+    <!-- قۆناغی ٣: دیاریی کۆتایی و لێدانی قورئان -->
+    <div class="card" id="step3">
+        <div style="font-size: 50px; margin-bottom: 15px;">📖</div>
+        <h1 id="mood-title">بۆ دەرمانی دڵت...</h1>
+        <p id="mood-text">مادام هەست بەمە دەکەیت، هیچ شتێک وەک کلامی خودا دڵت ئاو ناداتەوە.</p>
+        
+        <div class="ayat">"أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"</div>
+        
+        <button class="btn quran-btn" id="quran-btn" onclick="toggleQuran()">کلیک بکە بۆ بیستنی قورئانی پیرۆز 🎧</button>
+    </div>
+
+    <!-- لێرەدا دەنگی سوورەتی المُلک بە شێوەیەکی مسۆگەر لە سێرڤەرێکی جێگیرەوە دانراوە -->
     <audio id="quran-audio" loop>
         <source src="https://server11.mp3quran.net/afs/067.mp3" type="audio/mp3">
     </audio>
 
     <script>
+        // گۆڕینی قۆناغەکان
+        function nextStep(step) {
+            document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+        }
+
+        // کاتێک یەکێک لە هەستەکان هەڵدەبژێرێت
+        function selectMood(text) {
+            document.getElementById('mood-title').innerText = "مادام " + text + "..";
+            nextStep(3);
+        }
+
         const quran = document.getElementById('quran-audio');
         const btn = document.getElementById('quran-btn');
 
+        // لێدانی قورئان و گۆڕینی کەشی وێبسایتەکە
         function toggleQuran() {
             if (quran.paused) {
-                quran.play().catch(e => console.log("کێشە لە لۆدکردنی دەنگەکەدا هەیە:", e));
-                btn.innerHTML = "کپکردنی دەنگەکە 🔇";
-                btn.style.background = "linear-gradient(135deg, #a4b0be, #747d8c)";
+                quran.play().then(() => {
+                    btn.innerHTML = "کپکردنی دەنگەکە 🔇";
+                    btn.style.background = "linear-gradient(135deg, #64748b, #475569)";
+                    // گۆڕینی ڕەنگی پشتخلفێ بۆ سەوزێکی مەلەکوتی هێمن کاتێک قورئانەکە لێدەدات
+                    document.body.style.background = "linear-gradient(135deg, #064e3b, #022c22)";
+                }).catch(e => {
+                    alert("تکایە دڵنیابە لە هەبوونی هێڵی ئینتەرنێت و دووبارە کلیک بکەرەوە.");
+                    console.log(e);
+                });
             } else {
                 quran.pause();
-                btn.innerHTML = "کلیک بکە بۆ خوێندنەوەی قورئانی پیرۆز 📖";
-                btn.style.background = "linear-gradient(135deg, #8b5a2b, #6f4e37)";
+                btn.innerHTML = "کلیک بکە بۆ بیستنی قورئانی پیرۆز 🎧";
+                btn.style.background = "linear-gradient(135deg, #10b981, #059669)";
+                document.body.style.background = "linear-gradient(135deg, #0f172a, #1e293b)";
             }
         }
     </script>
