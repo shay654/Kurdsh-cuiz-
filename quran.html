@@ -27,10 +27,10 @@
             width: 90%;
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            display: none; /* هەموو لاپەڕەکان سەرەتا دەشاردرێنەوە */
+            display: none;
         }
         .card.active {
-            display: block; /* تەنها لاپەڕەی چالاک پیشان دەدرێت */
+            display: block;
             animation: fadeIn 0.8s ease forwards;
         }
         h1 {
@@ -55,7 +55,7 @@
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
-            margin: 5px;
+            margin: 8px 0;
             width: 100%;
             box-sizing: border-box;
         }
@@ -79,14 +79,23 @@
         .quran-btn:hover {
             box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
         }
+        .btn-back {
+            background: #475569;
+            font-size: 14px;
+            padding: 10px 20px;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+        .btn-back:hover {
+            background: #64748b;
+            opacity: 1;
+        }
         .ayat {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             color: #34d399;
             margin: 20px 0;
             direction: ltr;
-            opacity: 0;
-            animation: fadeIn 2s ease forwards 0.5s;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -98,72 +107,109 @@
 
     <!-- قۆناغی ١: پێشوازی -->
     <div class="card active" id="step1">
-        <div style="font-size: 50px; margin-bottom: 15px;">✨</div>
+        <div style="font-size: 50px; margin-bottom: 15px;">♥️🎀</div>
         <h1>خۆشحاڵم کە لێرەیت..</h1>
-        <p>ئەم شوێنە بچووکە بۆ ئەوە دروستکراوە کە خولەکێک لە جەنجاڵی دنیا دووربکەویتەوە. حەز دەکەم چەند چرکەیەک قووڵ هەناسە بدەیت، پاشان با پێکەوە دەست پێبکەین.</p>
+        <p>ئەم شوێنە بۆ ئەوە دروستکراوە کە خولەکێک لە جەنجاڵی دنیا دووربکەویتەوە. حەز دەکەم چەند چرکەیەک قووڵ هەناسە بدەیت، پاشان با پێکەوە دەست پێبکەین.</p>
         <button class="btn" onclick="nextStep(2)">بەرەو گەشتەکە لێخوڕە ➔</button>
     </div>
 
-    <!-- قۆناغی ٢: پرسیاری حاڵ و دۆخ -->
+    <!-- قۆناغی ٢: هەڵبژاردنی دۆخ -->
     <div class="card" id="step2">
         <div style="font-size: 50px; margin-bottom: 15px;">💭</div>
-        <h1>دۆخی ئێستات چۆنە؟</h1>
-        <p>بۆ ئەوەی بزانیت دڵت پێویستی بە چییە، پێم بڵێ ئێستا زیاتر چ هەستێک بەسەر مێشکتدا زالە؟</p>
-        <button class="btn btn-option" onclick="selectMood('ماندووم لە ڕاکەڕاکی ژیان و فشاری دەروونی')">هەست بە ماندووبوونی زۆر دەکەم🤕</button>
-        <button class="btn btn-option" onclick="selectMood('مێشکم سەرقاڵە و دڵم کەمێک تەنگە')>دڵم تەنگە 😔</button>
-        <button class="btn btn-option" onclick="selectMood('تەنها حەزم بە ساتێکی هێمن و بێدەنگە')">پێویستم بە هێمنییە 🌿</button>
+        <h1>دۆخی ئێستات چۆنە?</h1>
+        <p>پێم بڵێ ئێستا زیاتر چ هەستێک بەسەر مێشکتدا زالە تا ڕووبکەینە ئارامی؟</p>
+        <button class="btn btn-option" onclick="openQuranStep(3, 'quran1.mp3', 'فَمَنْ شَرَحَ اللَّهُ صَدْرَهُ لِلْإِسْلَامِ فَهُوَ عَلَىٰ نُورٍ مِنْ رَبِّهِ')">هەست بە ماندووبوونی زۆر دەکەم🤕</button>
+        <button class="btn btn-option" onclick="openQuranStep(4, 'quran2.mp3', 'وَلَنَبْلُوَنَّكُمْ بِشَيْءٍ مِنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِنَ الْأَمْوَالِ')">دڵم کەمێک تەنگ گرتوویەتی 😔</button>
+        <button class="btn btn-option" onclick="openQuranStep(5, 'quran3.mp3', 'فِي قُلُوبِهِمْ مَرَضٌ فَزَادَهُمُ اللَّهُ مَرَضًا')">پێویستم بە هێمنییە 🌿</button>
+        <button class="btn btn-back" onclick="nextStep(1)">➔ گەڕانەوە بۆ سەرەتا</button>
     </div>
 
-    <!-- قۆناغی ٣: دیاریی کۆتایی و لێدانی قورئان -->
+    <!-- قۆناغی ٣: ماندووبوون -->
     <div class="card" id="step3">
         <div style="font-size: 50px; margin-bottom: 15px;">📖</div>
-        <h1 id="mood-title">بۆ دەرمانی دڵت...</h1>
-        <p id="mood-text">مادام هەست بەمە دەکەیت، هیچ شتێک وەک کلامی خودا دڵت ئاو ناداتەوە.</p>
-        
-        <div class="ayat">"أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"</div>
-        
-        <button class="btn quran-btn" id="quran-btn" onclick="toggleQuran()">کلیک بکە بۆ بیستنی قورئانی پیرۆز 🎧</button>
+        <h1>بۆ حەسانەوەی ماندووبوونت...</h1>
+        <p>هیچ شتێک وەک کلامی خودا ماندووبوونی ڕۆح ناهێڵێت.</p>
+        <div class="ayat">"فَمَنْ شَرَحَ اللَّهُ صَدْرَهُ لِلْإِسْلَامِ فَهُوَ عَلَىٰ نُورٍ مِنْ رَبِّهِ"</div>
+        <button class="btn quran-btn" onclick="toggleQuran()">کلیک بکە بۆ بیستنی قورئانی پیرۆز 🎧</button>
+        <button class="btn btn-back" onclick="goBackToOptions()">➔ گەڕانەوە بۆ بژاردەکان</button>
     </div>
 
-    <!-- لێرەدا دەنگی سوورەتی المُلک بە شێوەیەکی مسۆگەر لە سێرڤەرێکی جێگیرەوە دانراوە -->
-    <audio id="quran-audio" loop>
-        <source src="https://server11.mp3quran.net/afs/067.mp3" type="audio/mp3">
-    </audio>
+    <!-- قۆناغی ٤: دڵتەنگی -->
+    <div class="card" id="step4">
+        <div style="font-size: 50px; margin-bottom: 15px;">☺️</div>
+        <h1>بۆ دڵنەوایی دڵت...</h1>
+        <p>خودا لەگەڵ ئارامگرانە، گوێبیستی ئەم ئایەتە پیرۆزە بە.</p>
+        <div class="ayat">"وَلَنَبْلُوَنَّكُمْ بِشَيْءٍ مِنَ الْخَوْفِ وَالْجُوعِ"</div>
+        <button class="btn quran-btn" onclick="toggleQuran()">کلیک بکە بۆ بیستنی قورئانی پیرۆز 🎧</button>
+        <button class="btn btn-back" onclick="goBackToOptions()">➔ گەڕانەوە بۆ بژاردەکان</button>
+    </div>
+
+    <!-- قۆناغی ٥: پێویستی بە هێمنی -->
+    <div class="card" id="step5">
+        <div style="font-size: 50px; margin-bottom: 15px;">🌿</div>
+        <h1>بۆ هێمنبوونەوەی مێشکت...</h1>
+        <p>با دڵت بە زیکری خودا ئارام بێتەوە.</p>
+        <div class="ayat">"فِي قُلُوبِهِمْ مَرَضٌ فَزَادَهُمُ اللَّهُ مَرَضًا"</div>
+        <button class="btn quran-btn" onclick="toggleQuran()">کلیک بکە بۆ بیستنی قورئانی پیرۆز 🎧</button>
+        <button class="btn btn-back" onclick="goBackToOptions()">➔ گەڕانەوە بۆ بژاردەکان</button>
+    </div>
+
+    <!-- یەک فایلی ئەودیۆ کە لە ڕێگەی جاڤاسکڕێپتەوە سەرچاوەکەی دەگۆڕێت -->
+    <audio id="global-quran" loop></audio>
 
     <script>
-        // گۆڕینی قۆناغەکان
+        const audio = document.getElementById('global-quran');
+        let currentAudioFile = '';
+
         function nextStep(step) {
             document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
             document.getElementById('step' + step).classList.add('active');
         }
 
-        // کاتێک یەکێک لە هەستەکان هەڵدەبژێرێت
-        function selectMood(text) {
-            document.getElementById('mood-title').innerText = "مادام " + text + "..";
-            nextStep(3);
+        function openQuranStep(step, audioFile) {
+            // ئەگەر دەنگێک لێ بدات و کەسەکە بژاردەیەکی تر هەڵبژێرێت، دەنگە کۆنەکە دەوەستێت
+            if (!audio.paused && currentAudioFile !== audioFile) {
+                audio.pause();
+                resetButtons();
+            }
+            
+            currentAudioFile = audioFile;
+            audio.src = audioFile;
+            nextStep(step);
         }
 
-        const quran = document.getElementById('quran-audio');
-        const btn = document.getElementById('quran-btn');
-
-        // لێدانی قورئان و گۆڕینی کەشی وێبسایتەکە
         function toggleQuran() {
-            if (quran.paused) {
-                quran.play().then(() => {
-                    btn.innerHTML = "کپکردنی دەنگەکە 🔇";
-                    btn.style.background = "linear-gradient(135deg, #64748b, #475569)";
-                    // گۆڕینی ڕەنگی پشتخلفێ بۆ سەوزێکی مەلەکوتی هێمن کاتێک قورئانەکە لێدەدات
+            const activeBtn = document.querySelector('.card.active .quran-btn');
+            
+            if (audio.paused) {
+                audio.play().then(() => {
+                    activeBtn.innerHTML = "کپکردنی دەنگەکە 🔇";
+                    activeBtn.style.background = "linear-gradient(135deg, #64748b, #475569)";
                     document.body.style.background = "linear-gradient(135deg, #064e3b, #022c22)";
                 }).catch(e => {
-                    alert("تکایە دڵنیابە لە هەبوونی هێڵی ئینتەرنێت و دووبارە کلیک بکەرەوە.");
+                    alert("دڵنیابە کە فایلە دەنگییەکان بە ناوەکانی quran1.mp3 و quran2.mp3 و quran3.mp3 ئەپڵۆد کراون.");
                     console.log(e);
                 });
             } else {
-                quran.pause();
-                btn.innerHTML = "کلیک بکە بۆ بیستنی قورئانی پیرۆز 🎧";
-                btn.style.background = "linear-gradient(135deg, #10b981, #059669)";
+                audio.pause();
+                activeBtn.innerHTML = "کلیک بکە بۆ بیستنی قورئانی پیرۆز 🎧";
+                activeBtn.style.background = "linear-gradient(135deg, #10b981, #059669)";
                 document.body.style.background = "linear-gradient(135deg, #0f172a, #1e293b)";
             }
+        }
+
+        function goBackToOptions() {
+            audio.pause();
+            resetButtons();
+            document.body.style.background = "linear-gradient(135deg, #0f172a, #1e293b)";
+            nextStep(2);
+        }
+
+        function resetButtons() {
+            document.querySelectorAll('.quran-btn').forEach(btn => {
+                btn.innerHTML = "کلیک بکە بۆ بیستنی قورئانی پیرۆز 🎧";
+                btn.style.background = "linear-gradient(135deg, #10b981, #059669)";
+            });
         }
     </script>
 </body>
