@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پەیوەندی ڤیدیۆیی لەگەڵ BTS</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(160, 32, 240, 0.5);
+        }
+        .btn {
+            background-color: #a020f0;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: #d8bfd8;
+            color: black;
+        }
+        .hidden {
+            display: none;
+        }
+        .joke-text {
+            color: #ff4500;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="setup">
+        <h2>پەیوەندی ڕاستەوخۆ لەگەڵ تایهۆنگ و جۆنکووک! 💜</h2>
+        <p>تایهۆنگ و جۆنکووک ئێستا دەیانەوێت بە ڤیدیۆ قسەت لەگەڵ بکەن، کلیك لەسەر دوگمەی خوارەوە بکە بۆ وەڵامدانەوە.</p>
+        <button class="btn" onclick="startPrank()">وەڵامدانەوە 📞</button>
+    </div>
+
+    <div id="prank" class="hidden">
+        <h2 class="joke-text">خەونەکەت زۆر خۆش بوو! 😜</h2>
+        <p>تایهۆنگ و جۆنکووک ئێستا لە کۆنسێرتن و ئاگایان لێت نییە! بڕۆ خەریکی تاقیکردنەوەکانت بە و سەعی بکە! 💜✨</p>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXNreXNnd3Bjd290M3E0djZ4NDFpZ281cHpxYjJ1cm9wYm9pZzVwdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vff5Q2bIfkijRcTCK1/giphy.gif" alt="BTS Laughing" style="width:100%; border-radius:10px; margin-top:15px;">
+    </div>
+</div>
+
+<script>
+    function startPrank() {
+        document.getElementById('setup').classList.add('hidden');
+        document.getElementById('prank').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
