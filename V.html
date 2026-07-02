@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIGHIT TERMINAL v4.13</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body {
+            background-color: #0a0a0a;
+            color: #00ff00;
+            padding: 20px;
+            overflow: hidden;
+            user-select: none;
+        }
+        /* تێرمیناڵی سەرەتا */
+        #terminal-screen {
+            display: block;
+        }
+        .line {
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #00ff00;
+            animation: typing 1.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        /* فۆڵدەرەکان دوای هاککردن */
+        #hacked-content {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .folder-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .folder {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .folder:hover {
+            transform: scale(1.1);
+        }
+        .folder-icon {
+            font-size: 60px;
+        }
+        .folder-name {
+            color: #ffffff;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        /* نامە یان پۆپ ئەپی شۆکەکە */
+        #prank-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #111;
+            border: 3px solid #ff0055;
+            padding: 30px;
+            text-align: center;
+            z-index: 100;
+            box-shadow: 0 0 20px #ff0055;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 450px;
+        }
+        #prank-popup h2 {
+            color: #ff0055;
+            margin-bottom: 15px;
+        }
+        #prank-popup p {
+            color: #fff;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .close-btn {
+            background-color: #ff0055;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        /* ئەنیمەیشنەکان */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ff00; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="terminal-screen">
+        <div class="line">Connecting to BigHit Servers... [OK]</div>
+        <div class="line" style="animation-delay: 1.5s;">Bypassing Taehyung's Phone Firewall... [SUCCESS]</div>
+        <div class="line" style="animation-delay: 3s;">Downloading Private Data... [100%]</div>
+        <div class="line" style="animation-delay: 4.5s; color: #ff0055;">ACCESS GRANTED. SYSTEM COMPROMISED.</div>
+    </div>
+
+    <div id="hacked-content">
+        <h1 style="color: #ff0055; margin-bottom: 10px;">🔓 مۆبایلی تایهیۆنگ هاککرا!</h1>
+        <p style="color: #aaa;">کلیک لەسەر فۆڵدەرەکان بکە بۆ بینینی ناوەڕۆک:</p>
+        
+        <div class="folder-container">
+            <div class="folder" onclick="openFolder('Secret Photos 📸')">
+                <div class="folder-icon">📁</div>
+                <div class="folder-name">Secret Photos</div>
+            </div>
+            <div class="folder" onclick="openFolder('Unreleased Songs 🎵')">
+                <div class="folder-icon">📁</div>
+                <div class="folder-name">New Tracks</div>
+            </div>
+            <div class="folder" onclick="openFolder('Private Chats 💬')">
+                <div class="folder-icon">📁</div>
+                <div class="folder-name">Chats</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="prank-popup">
+        <h2>⚠️ ئاگاداری لەلایەن تایهیۆنگەوە!</h2>
+        <p id="popup-text"></p>
+        <button class="close-btn" onclick="closePopup()">داخستن (ئەگەر دەتوانی!)</button>
+    </div>
+
+    <script>
+        // دوای 6 چرکە شاشەی هاککردنەکە لادەبات و فۆڵدەرەکان پیشان دەدات
+        setTimeout(() => {
+            document.getElementById('terminal-screen').style.display = 'none';
+            document.getElementById('hacked-content').style.display = 'block';
+        }, 6000);
+
+        // کاتێک کلیک لەسەر هەر فۆڵدەرێک دەکەن ئەم نامەیە دێت
+        function openFolder(folderName) {
+            let message = "";
+            if(folderName.includes('Photos')) {
+                message = "ئەرێ تۆ ئیش و کارت نییە هاتووی مۆبایلی من هاک دەکەیت بۆ وێنە؟ 🧐 غەڵەتت کرد! بڕۆ بەلای ئیش و کارو خەونەکانتەوە چاو جوان
+            } else if(folderName.includes('Songs')) {
+                message = "گۆرانی نوێ؟ هێشتا کۆمپانیا ڕێگەی نەداوە خۆم گوێی لێ بگرم، تۆ چۆن هاکت کردووە؟ 😭 بڕۆ دابخە دابخە ناو دڵمانت تەقاند!";
+            } else {
+                message = "چاتە تایبەتەکان؟ نامەوێت بزانیت کە لە گروپەکەماندا چەند غەیبەتی ئاڕمی دەکەین کاتێک ناخەون! 😉 دەی دابخە خێرا!";
+            }
+            
+            document.getElementById('popup-text').innerText = message;
+            document.getElementById('prank-popup').style.display = 'block';
+        }
+
+        // دوگمەی داخستنەکە کە فێڵ دەکات و کاتێک کلیکی لێ دەکەن، نامەیەکی تر دەهێنێت!
+        function closePopup() {
+            alert("بەڵێ بە تەمای دایبخەیت؟ هاکەرەکە خۆتیت و ئێستا ڕێگەت نییە بڕۆیت! 😂");
+            document.getElementById('prank-popup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
