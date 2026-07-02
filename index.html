@@ -1,72 +1,138 @@
 <!DOCTYPE html>
-<html lang="ku">
+<html lang="ku" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پەیوەندی ڤیدیۆیی لەگەڵ BTS</title>
+    <title>BIGHIT TERMINAL v4.13</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
         body {
-            background-color: #121212;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        .container {
-            max-width: 400px;
-            margin: auto;
-            background: #1e1e1e;
+            background-color: #0a0a0a;
+            color: #00ff00;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(160, 32, 240, 0.5);
+            overflow: hidden;
+            user-select: none;
         }
-        .btn {
-            background-color: #a020f0;
+        /* تێرمیناڵی سەرەتا */
+        #terminal-screen {
+            display: block;
+        }
+        .line {
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #00ff00;
+            animation: typing 1.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        /* فۆڵدەرەکان دوای هاککردن */
+        #hacked-content {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .folder-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .folder {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .folder:hover {
+            transform: scale(1.1);
+        }
+        .folder-icon {
+            font-size: 60px;
+        }
+        .folder-name {
+            color: #ffffff;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        /* نامە یان پۆپ ئەپی شۆکەکە */
+        #prank-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #111;
+            border: 3px solid #ff0055;
+            padding: 30px;
+            text-align: center;
+            z-index: 100;
+            box-shadow: 0 0 20px #ff0055;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 450px;
+        }
+        #prank-popup h2 {
+            color: #ff0055;
+            margin-bottom: 15px;
+        }
+        #prank-popup p {
+            color: #fff;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .close-btn {
+            background-color: #ff0055;
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 18px;
-            border-radius: 25px;
+            padding: 10px 20px;
             cursor: pointer;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background-color: #d8bfd8;
-            color: black;
-        }
-        .hidden {
-            display: none;
-        }
-        .joke-text {
-            color: #ff4500;
-            font-size: 22px;
             font-weight: bold;
+            border-radius: 5px;
+        }
+        /* ئەنیمەیشنەکان */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ff00; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div id="setup">
-        <h2>پەیوەندی ڕاستەوخۆ لەگەڵ تایهۆنگ و جۆنکووک! 💜</h2>
-        <p>تایهۆنگ و جۆنکووک ئێستا دەیانەوێت بە ڤیدیۆ قسەت لەگەڵ بکەن، کلیك لەسەر دوگمەی خوارەوە بکە بۆ وەڵامدانەوە.</p>
-        <button class="btn" onclick="startPrank()">وەڵامدانەوە 📞</button>
+    <div id="terminal-screen">
+        <div class="line">Connecting to BigHit Servers... [OK]</div>
+        <div class="line" style="animation-delay: 1.5s;">Bypassing Taehyung's Phone Firewall... [SUCCESS]</div>
+        <div class="line" style="animation-delay: 3s;">Downloading Private Data... [100%]</div>
+        <div class="line" style="animation-delay: 4.5s; color: #ff0055;">ACCESS GRANTED. SYSTEM COMPROMISED.</div>
     </div>
 
-    <div id="prank" class="hidden">
-        <h2 class="joke-text">خەونەکەت زۆر خۆش بوو! 😜</h2>
-        <p>تایهۆنگ و جۆنکووک ئێستا لە کۆنسێرتن و ئاگایان لێت نییە! بڕۆ خەریکی تاقیکردنەوەکانت بە و سەعی بکە! 💜✨</p>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXNreXNnd3Bjd290M3E0djZ4NDFpZ281cHpxYjJ1cm9wYm9pZzVwdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vff5Q2bIfkijRcTCK1/giphy.gif" alt="BTS Laughing" style="width:100%; border-radius:10px; margin-top:15px;">
+    <div id="hacked-content">
+        <h1 style="color: #ff0055; margin-bottom: 10px;">🔓 مۆبایلی تایهیۆنگ هاککرا!</h1>
+        <p style="color: #aaa;">کلیک لەسەر فۆڵدەرەکان بکە بۆ بینینی ناوەڕۆک:</p>
+        
+        <div class="folder-container">
+            <div class="folder" onclick="openFolder('Secret Photos 📸')">
+                <div class="folder-icon">📁</div>
+                <div class="folder-name">Secret Photos</div>
+            </div>
+            <div class="folder" onclick="openFolder('Unreleased Songs 🎵')">
+                <div class="folder-icon">📁</div>
+                <div class="folder-name">New Tracks</div>
+            </div>
+            <div class="folder" onclick="openFolder('Private Chats 💬')">
+                <div class="folder-icon">📁</div>
+                <div class="folder-name">Chats</div>
+            </div>
+        </div>
     </div>
-</div>
 
-<script>
-    function startPrank() {
-        document.getElementById('setup').classList.add('hidden');
-        document.getElementById('prank').classList.remove('hidden');
-    }
-</script>
-
-</body>
-</html>
+    <div id="prank-popup">
+        <h2>⚠️ ئاگاداری لەلایەن تایهیۆنگەوە!</h2>
+        <p id="popup-text"></p>
+        <button
