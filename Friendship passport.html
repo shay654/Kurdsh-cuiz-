@@ -3,261 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پاسپۆرتی هاوڕێیەتی - Friendship Passport</title>
+    <title>پاسپۆرتی هاوڕێیەتی</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary-color: #ff85a2;
+            --secondary-color: #f72585;
+            --bg-color: #fff0f5;
+            --card-bg: #ffffff;
+            --text-color: #4a4a4a;
+            --accent-pink: #ffb7b2;
         }
 
         body {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 15px;
         }
 
-        .passport-container {
-            background: #fffdf9;
+        .container {
             width: 100%;
-            max-width: 450px;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            border: 2px solid #d4af37;
+            max-width: 500px;
+            background-color: var(--card-bg);
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(247, 37, 133, 0.15);
             padding: 25px;
-            position: relative;
+            border: 2px solid #ffccd5;
         }
 
         .header {
             text-align: center;
-            border-bottom: 2px dashed #d4af37;
-            padding-bottom: 12px;
-            margin-bottom: 15px;
+            border-bottom: 2px dashed #ffb7b2;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .header h1 {
-            color: #4a3e3d;
-            font-size: 22px;
+            color: var(--secondary-color);
+            margin: 0;
+            font-size: 24px;
         }
 
-        .page {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
+        .header p {
+            color: #b5838d;
+            font-size: 14px;
+            margin-top: 5px;
         }
 
-        .page.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Input styling */
-        .input-group {
-            margin: 20px 0;
+        .love-quote {
+            background-color: #fff5f7;
+            border-right: 4px solid var(--secondary-color);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #d81159;
+            font-weight: bold;
             text-align: center;
         }
 
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            outline: none;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        /* Buttons */
-        .btn {
-            background: #4a3e3d;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: 0.3s;
-            margin-top: 10px;
-            width: 100%;
-        }
-
-        .btn:hover {
-            background: #6b5b59;
-        }
-
-        /* Stamps */
-        .stamps-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 15px 0;
-        }
-
-        .stamp-card {
-            background: #faf6f0;
-            border: 2px dashed #c0a062;
-            border-radius: 12px;
+        .quiz-section {
+            background: #fff;
             padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #ffe5ec;
+        }
+
+        .question {
+            font-weight: bold;
+            color: #6d597a;
+            margin-bottom: 15px;
             text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
         }
 
-        .stamp-card:hover {
-            background: #fff0f5;
-            transform: scale(1.03);
-        }
-
-        .modal-box {
-            background: #f0f8ff;
-            border-radius: 10px;
-            padding: 10px;
-            margin-top: 10px;
-            font-size: 13px;
-            color: #333;
-            display: none;
-        }
-
-        .nav-buttons {
+        .options {
             display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
+            flex-direction: column;
             gap: 10px;
+        }
+
+        .option-btn {
+            background-color: #ffe5ec;
+            color: #6d597a;
+            border: 1px solid #ffc2d1;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .option-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            background-color: #fff0f3;
+            border: 1px dashed var(--secondary-color);
+            text-align: center;
+            display: none;
+            color: #800f2f;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 12px;
+            color: #b5838d;
         }
     </style>
 </head>
 <body>
 
-    <div class="passport-container">
-        
-        <!-- لاپەڕەی 1: بەخێرهاتن و ناونوسین -->
-        <div class="page active" id="page1">
-            <div class="header">
-                <h1>📜 پاسپۆرتی هاوڕێیەتی</h1>
-                <p style="font-size: 12px; color: #777;">Friendship Passport System</p>
-            </div>
-            <p style="text-align: center; font-size: 14px; color: #555;">بەخێربێیت! تکایە ناوی خۆت یان هاوڕێکەت بنووسە بۆ چالاککردنی پاسپۆرتەکە:</p>
-            
-            <div class="input-group">
-                <input type="text" id="friendName" placeholder="ناوی هاوڕێکەت لێرە بنووسە...">
-            </div>
-            
-            <button class="btn" onclick="startPassport()">تۆمارکردن & چوونەژوورەوە ✨</button>
-        </div>
-
-        <!-- لاپەڕەی 2: زانیاری کەسی -->
-        <div class="page" id="page2">
-            <div class="header">
-                <h1 id="displayName">ناوی هاوڕێ</h1>
-                <p style="font-size: 12px; color: #2e7d32;">● پاسپۆرتەکە چالاکە</p>
-            </div>
-            
-            <div style="background: #faf6f0; padding: 15px; border-radius: 12px; margin-bottom: 15px; font-size: 13px; line-height: 1.8;">
-                <p>📍 <b>پلەی هاوڕێیەتی:</b> باشترین هاوڕێی ئیمانی 🤍</p>
-                <p>🕊️ <b>ئامانج:</b> دەستگرتن تا دیداری بەهەشت</p>
-                <p>✨ <b>بارودۆخ:</b> پەسەندکراو بۆ هەتاهەتایە</p>
-            </div>
-
-            <p style="font-size: 12px; color: #888; text-align: center;">(کلیک لە سەر "لاپەڕەی دواتر" بکە بۆ بینیی مۆرەکان)</p>
-
-            <div class="nav-buttons">
-                <button class="btn" onclick="goToPage(3)">لاپەڕەی دواتر ➡️</button>
-            </div>
-        </div>
-
-        <!-- لاپەڕەی 3: مۆرە کلیککراوەکان -->
-        <div class="page" id="page3">
-            <div class="header">
-                <h1>📍 مۆری بەڵێنەکان</h1>
-                <p style="font-size: 12px; color: #777;">کلیک لەسەر مۆرەکان بکە تا پەیامەکان ببینی</p>
-            </div>
-
-            <div class="stamps-grid">
-                <div class="stamp-card" onclick="toggleMessage('msg1')">
-                    <div style="font-size: 24px;">🌙</div>
-                    <div style="font-size: 13px; font-weight: bold;">مۆری دوعا</div>
-                </div>
-                <div class="stamp-card" onclick="toggleMessage('msg2')">
-                    <div style="font-size: 24px;">🤝</div>
-                    <div style="font-size: 13px; font-weight: bold;">مۆری وەفا</div>
-                </div>
-            </div>
-
-            <div class="modal-box" id="msg1">
-                💬 <b>پەیامی دوعا:</b> "داوا لە خودا دەکەم هەموو بەیانییەک دڵت بە ئارامی بکاتەوە و لە پاراستنی خۆیدا بیت."
-            </div>
-            <div class="modal-box" id="msg2">
-                💬 <b>پەیامی وەفا:</b> "لە هەموو ساتە خۆش و ناخۆشەکاندا، پشتیوانی یەکتر دەبین لەسەر ڕێگەی حەق."
-            </div>
-
-            <div class="nav-buttons">
-                <button class="btn" style="background:#888;" onclick="goToPage(2)">⬅️ پێشتر</button>
-                <button class="btn" onclick="goToPage(4)">کارتێک ڕابکێشە 🎲</button>
-            </div>
-        </div>
-
-        <!-- لاپەڕەی 4: کارتی بەختی هاوڕێیەتی -->
-        <div class="page" id="page4">
-            <div class="header">
-                <h1>🎁 کارتی تایبەتی ڕۆژ</h1>
-            </div>
-
-            <div style="text-align: center; margin: 20px 0;">
-                <button class="btn" style="background:#e91e63;" onclick="drawCard()">کلیک بکە بۆ ڕاکێشانی کارت ✨</button>
-                <div id="cardResult" style="margin-top: 20px; font-size: 15px; font-weight: bold; color: #4a3e3d; min-height: 50px;"></div>
-            </div>
-
-            <div class="nav-buttons">
-                <button class="btn" style="background:#888;" onclick="goToPage(3)">⬅️ پێشتر</button>
-            </div>
-        </div>
-
+<div class="container">
+    <div class="header">
+        <h1>🌸 پاسپۆرتی هاوڕێیەتی 🌸</h1>
+        <p>بەکارهێنانی تایبەت بۆ هاوڕێ ئەزیزەکەم</p>
     </div>
 
-    <script>
-        function goToPage(pageNum) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page' + pageNum).classList.add('active');
-        }
+    <!-- ڕستە تایبەتەکەی تۆ -->
+    <div class="love-quote">
+        "من تۆم زۆر خۆشدەوێت، هەرگیز ئەوە لەبیرنەکەیت. من هەمیشە لەگەڵتم لە هەموو خۆشی و ناخۆشیەکان نازدارەکەم 💖"
+    </div>
 
-        function startPassport() {
-            let name = document.getElementById('friendName').value;
-            if(name.trim() === "") {
-                alert("تکایە ناوێک بنووسە!");
-                return;
-            }
-            document.getElementById('displayName').innerText = "📜 پاسپۆرتی: " + name;
-            goToPage(2);
-        }
+    <!-- بەشی یاری و پرسیارەکان -->
+    <div class="quiz-section">
+        <div class="question">یەکێک لەم هەڵبژاردنانە دیاری بکە بۆ دەستپێکردنی یارییەکە:</div>
+        <div class="options">
+            <button class="option-btn" onclick="showResult(1)">🌸 ڕاستگۆیی و وەفاداری لە نێوانماندا</button>
+            <button class="option-btn" onclick="showResult(2)">🌷 جوانترین یادگاری کە پێکەوە هۆنراوەتەوە</button>
+            <button class="option-btn" onclick="showResult(3)">🎀 ئاستی گرنگیدان و خۆشەویستیمان</button>
+            <button class="option-btn" onclick="showResult(4)">🌺 بەڵێنی پشتگیری هەتا هەتایە</button>
+        </div>
 
-        function toggleMessage(id) {
-            let el = document.getElementById(id);
-            if(el.style.display === "block") {
-                el.style.display = "none";
-            } else {
-                document.querySelectorAll('.modal-box').forEach(m => m.style.display = 'none');
-                el.style.display = "block";
-            }
-        }
+        <!-- شوێنی نیشاندانی ئەنجامە جیاوازەکان -->
+        <div id="result" class="result-box"></div>
+    </div>
 
-        const cards = [
-            "🌸 'هاوڕێی باش وەک عەتر وایە، بۆن خۆشیت پێ دەبەخشێت.'",
-            "✨ 'ئەمڕۆ دوعایەکی تایبەتم بۆ کردویت، خودا پاداشتی خێرت بداتەوە.'",
-            "🕊️ 'بەهیوام هەمیشە پێکەنین لەسەر لێوەکانت بێت هاوڕێی ئازیزم.'"
-        ];
+    <div class="footer-note">
+        درستکراوە بە خۆشەویستییەوە 🌷
+    </div>
+</div>
 
-        function drawCard() {
-            let randomCard = cards[Math.floor(Math.random() * cards.length)];
-            document.getElementById('cardResult').innerText = randomCard;
+<script>
+    function showResult(optionNumber) {
+        var resultDiv = document.getElementById('result');
+        resultDiv.style.display = 'block';
+
+        // ئەنجامی جیاواز بۆ هەر وەڵامێک (ئاستی بەرز و تایبەت)
+        if (optionNumber === 1) {
+            resultDiv.innerHTML = "💌 **ئاستی وەفاداری:** 100%<br>ڕاستگۆیی تۆ پایەی سەرەکی ئەم هاوڕێیەتییەیە، بوونی تۆ دیارییەکی گەورەی ژیانمە!";
+        } else if (optionNumber === 2) {
+            resultDiv.innerHTML = "📷 **شاکاری یادگارییەکان:** 100%<br>هەر ساتێک بەخۆشی یان بە سەختی تێپەڕیوە، بووەتە ئاڵتوونی‌ترین لاپەڕەی بیرەوەرییەکانمان!";
+        } else if (optionNumber === 3) {
+            resultDiv.innerHTML = "💖 **ئاستی خۆشەویستی:** بێسنوور!<br>پێویست بە پێوانە ناکات، تۆ لە شوێنێکیت لە دڵدا کە چۆڵ بوونی ئەستەمە!";
+        } else if (optionNumber === 4) {
+            resultDiv.innerHTML = "🤝 **سۆز و بەڵێن:** هەتا هەتایە<br>لە هەموو ڕێگاکانی ژیاندا شانی بەشانت دەبم و شانازیت پێوە دەکەم نازدارەکەم!";
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
-
