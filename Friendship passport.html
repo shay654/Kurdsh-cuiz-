@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پاسپۆرتی هاوڕێیەتی - Friendship Passport</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nrt&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .passport-card {
+            background: #fffdf9;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 2px solid #e2d4b7;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px dashed #d1c2a5;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #4a3e3d;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .header h2 {
+            color: #8b7355;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .profile-section {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            background: #faf6f0;
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .avatar-box {
+            width: 75px;
+            height: 75px;
+            background-color: #ffd1dc;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .info-box {
+            flex: 1;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .info-box span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .stamps-title {
+            font-size: 15px;
+            color: #4a3e3d;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .stamps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stamp {
+            border: 2px dashed #b5a886;
+            border-radius: 10px;
+            padding: 10px 5px;
+            text-align: center;
+            background: #fff;
+            transition: transform 0.2s;
+        }
+
+        .stamp:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .stamp-icon {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .stamp-text {
+            font-size: 11px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .footer-tag {
+            background: #4a3e3d;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="passport-card">
+        <!-- پاسپۆرت هێدەر -->
+        <div class="header">
+            <h1>📜 پاسپۆرتی هاوڕێیەتی</h1>
+            <h2>FRIENDSHIP PASSPORT</h2>
+        </div>
+
+        <!-- بەشی زانیاری -->
+        <div class="profile-section">
+            <div class="avatar-box">
+                🕊️
+            </div>
+            <div class="info-box">
+                <p>بارودۆخ: <span>پەسەندکراو بۆ هەتاهەتایە ✨</span></p>
+                <p>مەبەست: <span>هاوڕێیەتی لەسەر ڕێگەی بەهەشت 🤍</span></p>
+            </div>
+        </div>
+
+        <!-- بەشی مۆرەکان -->
+        <div class="stamps-title">📍 مۆری بەڵێنەکان & گەشتەکان</div>
+        <div class="stamps-grid">
+            <div class="stamp">
+                <div class="stamp-icon">🌙</div>
+                <div class="stamp-text">دوعای بەیانیان</div>
+            </div>
+            <div class="stamp">
+                <div class="stamp-icon">🤍</div>
+                <div class="stamp-text">لێخۆشبوون</div>
+            </div>
+            <div class="stamp">
+                <div class="stamp-icon">🕊️</div>
+                <div class="stamp-text">دیداری بەهەشت</div>
+            </div>
+        </div>
+
+        <!-- فۆتەر -->
+        <div class="footer-tag">
+            "باشترین هاوڕێ نیعمەتێکی شاراوەیە..." 🌸
+        </div>
+    </div>
+
+</body>
+</html>
