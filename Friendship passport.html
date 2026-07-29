@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پاسپۆرتی هاوڕێیەتی - Friendship Passport</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nrt&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -14,176 +13,251 @@
         }
 
         body {
-            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
 
-        .passport-card {
+        .passport-container {
             background: #fffdf9;
             width: 100%;
-            max-width: 420px;
+            max-width: 450px;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            border: 2px solid #e2d4b7;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border: 2px solid #d4af37;
             padding: 25px;
             position: relative;
-            overflow: hidden;
         }
 
         .header {
             text-align: center;
-            border-bottom: 2px dashed #d1c2a5;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            border-bottom: 2px dashed #d4af37;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .header h1 {
             color: #4a3e3d;
             font-size: 22px;
-            margin-bottom: 5px;
         }
 
-        .header h2 {
-            color: #8b7355;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
-        .profile-section {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-bottom: 20px;
-            background: #faf6f0;
-            padding: 12px;
-            border-radius: 12px;
+        .page.active {
+            display: block;
         }
 
-        .avatar-box {
-            width: 75px;
-            height: 75px;
-            background-color: #ffd1dc;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            border: 2px solid #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .info-box {
-            flex: 1;
-        }
-
-        .info-box p {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 4px;
-        }
-
-        .info-box span {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .stamps-title {
-            font-size: 15px;
-            color: #4a3e3d;
-            margin-bottom: 12px;
+        /* Input styling */
+        .input-group {
+            margin: 20px 0;
             text-align: center;
-            font-weight: bold;
         }
 
-        .stamps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .stamp {
-            border: 2px dashed #b5a886;
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 2px solid #ddd;
             border-radius: 10px;
-            padding: 10px 5px;
+            outline: none;
+            font-size: 14px;
             text-align: center;
-            background: #fff;
-            transition: transform 0.2s;
         }
 
-        .stamp:hover {
-            transform: scale(1.05) rotate(-2deg);
-        }
-
-        .stamp-icon {
-            font-size: 22px;
-            margin-bottom: 4px;
-        }
-
-        .stamp-text {
-            font-size: 11px;
-            color: #555;
-            font-weight: bold;
-        }
-
-        .footer-tag {
+        /* Buttons */
+        .btn {
             background: #4a3e3d;
             color: #fff;
-            text-align: center;
-            padding: 10px;
+            border: none;
+            padding: 10px 20px;
             border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #6b5b59;
+        }
+
+        /* Stamps */
+        .stamps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .stamp-card {
+            background: #faf6f0;
+            border: 2px dashed #c0a062;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .stamp-card:hover {
+            background: #fff0f5;
+            transform: scale(1.03);
+        }
+
+        .modal-box {
+            background: #f0f8ff;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
             font-size: 13px;
-            letter-spacing: 0.5px;
+            color: #333;
+            display: none;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            gap: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="passport-card">
-        <!-- پاسپۆرت هێدەر -->
-        <div class="header">
-            <h1>📜 پاسپۆرتی هاوڕێیەتی</h1>
-            <h2>FRIENDSHIP PASSPORT</h2>
+    <div class="passport-container">
+        
+        <!-- لاپەڕەی 1: بەخێرهاتن و ناونوسین -->
+        <div class="page active" id="page1">
+            <div class="header">
+                <h1>📜 پاسپۆرتی هاوڕێیەتی</h1>
+                <p style="font-size: 12px; color: #777;">Friendship Passport System</p>
+            </div>
+            <p style="text-align: center; font-size: 14px; color: #555;">بەخێربێیت! تکایە ناوی خۆت یان هاوڕێکەت بنووسە بۆ چالاککردنی پاسپۆرتەکە:</p>
+            
+            <div class="input-group">
+                <input type="text" id="friendName" placeholder="ناوی هاوڕێکەت لێرە بنووسە...">
+            </div>
+            
+            <button class="btn" onclick="startPassport()">تۆمارکردن & چوونەژوورەوە ✨</button>
         </div>
 
-        <!-- بەشی زانیاری -->
-        <div class="profile-section">
-            <div class="avatar-box">
-                🕊️
+        <!-- لاپەڕەی 2: زانیاری کەسی -->
+        <div class="page" id="page2">
+            <div class="header">
+                <h1 id="displayName">ناوی هاوڕێ</h1>
+                <p style="font-size: 12px; color: #2e7d32;">● پاسپۆرتەکە چالاکە</p>
             </div>
-            <div class="info-box">
-                <p>بارودۆخ: <span>پەسەندکراو بۆ هەتاهەتایە ✨</span></p>
-                <p>مەبەست: <span>هاوڕێیەتی لەسەر ڕێگەی بەهەشت 🤍</span></p>
+            
+            <div style="background: #faf6f0; padding: 15px; border-radius: 12px; margin-bottom: 15px; font-size: 13px; line-height: 1.8;">
+                <p>📍 <b>پلەی هاوڕێیەتی:</b> باشترین هاوڕێی ئیمانی 🤍</p>
+                <p>🕊️ <b>ئامانج:</b> دەستگرتن تا دیداری بەهەشت</p>
+                <p>✨ <b>بارودۆخ:</b> پەسەندکراو بۆ هەتاهەتایە</p>
+            </div>
+
+            <p style="font-size: 12px; color: #888; text-align: center;">(کلیک لە سەر "لاپەڕەی دواتر" بکە بۆ بینیی مۆرەکان)</p>
+
+            <div class="nav-buttons">
+                <button class="btn" onclick="goToPage(3)">لاپەڕەی دواتر ➡️</button>
             </div>
         </div>
 
-        <!-- بەشی مۆرەکان -->
-        <div class="stamps-title">📍 مۆری بەڵێنەکان & گەشتەکان</div>
-        <div class="stamps-grid">
-            <div class="stamp">
-                <div class="stamp-icon">🌙</div>
-                <div class="stamp-text">دوعای بەیانیان</div>
+        <!-- لاپەڕەی 3: مۆرە کلیککراوەکان -->
+        <div class="page" id="page3">
+            <div class="header">
+                <h1>📍 مۆری بەڵێنەکان</h1>
+                <p style="font-size: 12px; color: #777;">کلیک لەسەر مۆرەکان بکە تا پەیامەکان ببینی</p>
             </div>
-            <div class="stamp">
-                <div class="stamp-icon">🤍</div>
-                <div class="stamp-text">لێخۆشبوون</div>
+
+            <div class="stamps-grid">
+                <div class="stamp-card" onclick="toggleMessage('msg1')">
+                    <div style="font-size: 24px;">🌙</div>
+                    <div style="font-size: 13px; font-weight: bold;">مۆری دوعا</div>
+                </div>
+                <div class="stamp-card" onclick="toggleMessage('msg2')">
+                    <div style="font-size: 24px;">🤝</div>
+                    <div style="font-size: 13px; font-weight: bold;">مۆری وەفا</div>
+                </div>
             </div>
-            <div class="stamp">
-                <div class="stamp-icon">🕊️</div>
-                <div class="stamp-text">دیداری بەهەشت</div>
+
+            <div class="modal-box" id="msg1">
+                💬 <b>پەیامی دوعا:</b> "داوا لە خودا دەکەم هەموو بەیانییەک دڵت بە ئارامی بکاتەوە و لە پاراستنی خۆیدا بیت."
+            </div>
+            <div class="modal-box" id="msg2">
+                💬 <b>پەیامی وەفا:</b> "لە هەموو ساتە خۆش و ناخۆشەکاندا، پشتیوانی یەکتر دەبین لەسەر ڕێگەی حەق."
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn" style="background:#888;" onclick="goToPage(2)">⬅️ پێشتر</button>
+                <button class="btn" onclick="goToPage(4)">کارتێک ڕابکێشە 🎲</button>
             </div>
         </div>
 
-        <!-- فۆتەر -->
-        <div class="footer-tag">
-            "باشترین هاوڕێ نیعمەتێکی شاراوەیە..." 🌸
+        <!-- لاپەڕەی 4: کارتی بەختی هاوڕێیەتی -->
+        <div class="page" id="page4">
+            <div class="header">
+                <h1>🎁 کارتی تایبەتی ڕۆژ</h1>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <button class="btn" style="background:#e91e63;" onclick="drawCard()">کلیک بکە بۆ ڕاکێشانی کارت ✨</button>
+                <div id="cardResult" style="margin-top: 20px; font-size: 15px; font-weight: bold; color: #4a3e3d; min-height: 50px;"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn" style="background:#888;" onclick="goToPage(3)">⬅️ پێشتر</button>
+            </div>
         </div>
+
     </div>
 
+    <script>
+        function goToPage(pageNum) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + pageNum).classList.add('active');
+        }
+
+        function startPassport() {
+            let name = document.getElementById('friendName').value;
+            if(name.trim() === "") {
+                alert("تکایە ناوێک بنووسە!");
+                return;
+            }
+            document.getElementById('displayName').innerText = "📜 پاسپۆرتی: " + name;
+            goToPage(2);
+        }
+
+        function toggleMessage(id) {
+            let el = document.getElementById(id);
+            if(el.style.display === "block") {
+                el.style.display = "none";
+            } else {
+                document.querySelectorAll('.modal-box').forEach(m => m.style.display = 'none');
+                el.style.display = "block";
+            }
+        }
+
+        const cards = [
+            "🌸 'هاوڕێی باش وەک عەتر وایە، بۆن خۆشیت پێ دەبەخشێت.'",
+            "✨ 'ئەمڕۆ دوعایەکی تایبەتم بۆ کردویت، خودا پاداشتی خێرت بداتەوە.'",
+            "🕊️ 'بەهیوام هەمیشە پێکەنین لەسەر لێوەکانت بێت هاوڕێی ئازیزم.'"
+        ];
+
+        function drawCard() {
+            let randomCard = cards[Math.floor(Math.random() * cards.length)];
+            document.getElementById('cardResult').innerText = randomCard;
+        }
+    </script>
 </body>
 </html>
+
