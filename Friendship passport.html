@@ -3,349 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پاسپۆرتی تایبەتی هاوڕێیەتی</title>
+    <title>رۆژی جیهانی هاوڕێیەتی پیرۆز بێت!</title>
     <style>
-        :root {
-            --primary: #ff85a2;
-            --secondary: #f72585;
-            --bg: #fff0f5;
-            --card-bg: #ffffff;
-            --text: #4a4a4a;
-            --accent: #ffccd5;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 20px 10px;
+            background: linear-gradient(135deg, #a8edd9 0%, #fed6e3 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            padding: 20px;
         }
 
-        .main-card {
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 450px;
             width: 100%;
-            max-width: 550px;
-            background-color: var(--card-bg);
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(247, 37, 133, 0.15);
-            padding: 30px 20px;
-            border: 3px solid var(--accent);
-        }
-
-        .header {
             text-align: center;
-            border-bottom: 2px dashed #ffb7b2;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .header h1 {
-            color: var(--secondary);
-            margin: 0;
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon {
+            font-size: 65px;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+            display: inline-block;
+        }
+
+        h1 {
+            color: #2c3e50;
             font-size: 26px;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
 
-        .header p {
-            color: #b5838d;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        /* ڕستە تایبەتەکەی تۆ */
-        .special-quote {
-            background: linear-gradient(135deg, #fff5f7 0%, #ffe5ec 100%);
-            border-right: 5px solid var(--secondary);
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            font-size: 15px;
-            line-height: 1.8;
-            color: #d81159;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-        }
-
-        /* بەشی کارت / پاسپۆرت */
-        .passport-box {
-            background-color: #fff;
-            border: 2px solid #ffccd5;
-            border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 25px;
-        }
-
-        .passport-title {
-            color: var(--secondary);
-            font-weight: bold;
+        p {
+            color: #555;
             font-size: 16px;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #ffe5ec;
-            font-size: 14px;
-        }
-
-        .info-label {
-            color: #b5838d;
-            font-weight: bold;
-        }
-
-        .info-val {
-            color: #6d597a;
-            font-weight: bold;
-        }
-
-        /* کارتی بیرەوەرییەکان */
-        .section-title {
-            color: #6d597a;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 25px 0 15px 0;
-            text-align: center;
-        }
-
-        .grid-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            line-height: 1.8;
             margin-bottom: 25px;
         }
 
-        .mini-card {
-            background-color: #fff0f3;
-            border: 1px solid #ffb7b2;
-            padding: 12px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .mini-card:hover {
-            transform: translateY(-3px);
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .mini-card h4 {
-            margin: 5px 0;
-            font-size: 14px;
-        }
-
-        .mini-card p {
-            margin: 0;
-            font-size: 11px;
-            opacity: 0.8;
-        }
-
-        /* یارییەکە */
-        .quiz-box {
-            background: #fff;
-            padding: 20px;
-            border-radius: 20px;
-            border: 2px solid #ffe5ec;
-            margin-bottom: 25px;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .btn-option {
-            background-color: #ffe5ec;
-            color: #6d597a;
-            border: 1px solid #ffc2d1;
-            padding: 12px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 13px;
-            text-align: right;
+        .highlight {
+            color: #ff5e7e;
             font-weight: bold;
         }
 
-        .btn-option:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .result-box {
-            margin-top: 15px;
-            padding: 15px;
-            border-radius: 12px;
-            background-color: #fff0f3;
-            border: 1px dashed var(--secondary);
-            text-align: center;
-            display: none;
-            color: #800f2f;
-            font-weight: bold;
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        /* بەشی دیاریی نھێنی */
-        .secret-box {
-            text-align: center;
-            background-color: #fff0f3;
-            padding: 20px;
-            border-radius: 20px;
-            border: 2px dashed #ff85a2;
-        }
-
-        .secret-btn {
-            background-color: var(--secondary);
+        .btn {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 50px;
             cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
-        .secret-content {
-            display: none;
-            margin-top: 15px;
-            color: #a31621;
-            font-weight: bold;
-            font-size: 14px;
+        .btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #ff5e7e, #ff6b95);
         }
 
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            color: #b5838d;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-<div class="main-card">
-    
-    <!-- سەردێڕ -->
-    <div class="header">
-        <h1>🌸 پاسپۆرتی هاوڕێیەتی ئەبەدی 🌸</h1>
-        <p>بەکارهێنانی تایبەت بۆ نازدارترین هاوڕێی ژیانم</p>
+    <div class="card">
+        <div class="icon">✨👭✨</div>
+        <h1>رۆژی جیهانی هاوڕێیەتی پیرۆز بێت!</h1>
+        <p>
+            هاوڕێیەتی ڕاستەقینە دیارییەکی گرانبەهایە. سوپاس بۆ ئەوەی هەمیشە هاوڕێیەکی دڵسۆز و پشتیوان بوویت، ژیان بە بوونی تۆ زۆر قۆشەنتر و ڕەنگینترە! 🤍
+        </p>
+        <button class="btn" onclick="celebrate()">پیرۆزبایی بکە 🎉</button>
     </div>
 
-    <!-- ڕستە تایبەتەکەت -->
-    <div class="special-quote">
-        "من تۆم زۆر خۆشدەوێت، هەرگیز ئەوە لەبیرنەکەیت. من هەمیشە لەگەڵتم لە هەموو خۆشی و ناخۆشیەکان نازدارەکەم 💖"
-    </div>
-
-    <!-- بەشی زانیاری پاسپۆرتەکە -->
-    <div class="passport-box">
-        <div class="passport-title">📜 زانیارییەکانی پاسپۆرتی هاوڕێیەتی</div>
-        <div class="info-row">
-            <span class="info-label">جۆری پەیوەندی:</span>
-            <span class="info-val">هاوڕێی ڕۆح بە ڕۆح 🌷</span>
-        </div>
-        <div class="info-row">
-            <span class="info-label">ئاستی گرنگیدان:</span>
-            <span class="info-val">بێسنوور و هەمیشەیی 💗</span>
-        </div>
-        <div class="info-row">
-            <span class="info-label">ماوەی بڕواپێکردن:</span>
-            <span class="info-val">تا هەتا هەتایە ♾️</span>
-        </div>
-        <div class="info-row">
-            <span class="info-label">پێگەی لە دڵدا:</span>
-            <span class="info-val">شوێنی تایبەت و جێگیر 👑</span>
-        </div>
-    </div>
-
-    <!-- مۆزەخانەی یادگارییەکان -->
-    <div class="section-title">🎀 گۆشەی بیرەوەری و وەفاداری 🎀</div>
-    <div class="grid-cards">
-        <div class="mini-card" onclick="alert('🌸 تۆ ئەو کەسەی لە ناخۆشترین کاتدا پێکەنین دەخەیتە سەر لێوم!')">
-            <h4>🌷 ڕۆژە خۆشەکان</h4>
-            <p>داگرە بۆ بینینی پەیام</p>
-        </div>
-        <div class="mini-card" onclick="alert('💖 هیچ شتێک ناتوانێت شوێنی تۆ لە ژیانمدا بگرێتەوە نازدارەکەم.')">
-            <h4>👑 بەهای هاوڕێیەتی</h4>
-            <p>داگرە بۆ بینینی پەیام</p>
-        </div>
-        <div class="mini-card" onclick="alert('🤝 لە هەموو قۆناغەکانی ژیاندا پڵپشتم و هەردەم شانازیت پێوە دەکەم.')">
-            <h4>🌺 بەڵێنی بەردەوامی</h4>
-            <p>داگرە بۆ بینینی پەیام</p>
-        </div>
-        <div class="mini-card" onclick="alert('🎀 تۆ تەنها هاوڕێ نیت، بەشێکیت لە خێزان و ڕۆحم!')">
-            <h4>💌 سۆزی شاراوە</h4>
-            <p>داگرە بۆ بینینی پەیام</p>
-        </div>
-    </div>
-
-    <!-- یاریی ئاستی هاوڕێیەتی -->
-    <div class="quiz-box">
-        <div style="text-align: center; font-weight: bold; color: #6d597a;">🎯 تاقیکردنەوەی ئاستی هاوڕێیەتیمان:</div>
-        <p style="text-align: center; font-size: 12px; color: #b5838d;">یەکێک لە بژاردەکان هەڵبژێرە تا وەڵامی تایبەت ببینیت</p>
-        
-        <div class="options">
-            <button class="btn-option" onclick="showQuizResult(1)">🌸 ١. کاتێک دڵت تەنگ دەبێت یەکەم کەس بیر لە کێ دەکەیتەوە؟</button>
-            <button class="btn-option" onclick="showQuizResult(2)">🌷 ٢. تا چەند ڕاستگۆیی لە نێوانماندا هەیە؟</button>
-            <button class="btn-option" onclick="showQuizResult(3)">🎀 ٣. ئەگەر هەموو جیهان دژت بن من لە کوێ دەبم؟</button>
-            <button class="btn-option" onclick="showQuizResult(4)">🌺 ٤. گرنگترین دیاری کە لە تۆوە وەرمگرتبێت چییە؟</button>
-        </div>
-
-        <div id="quizResult" class="result-box"></div>
-    </div>
-
-    <!-- سندوقی نهێنی -->
-    <div class="secret-box">
-        <div style="font-weight: bold; color: #d81159;">🎁 سندوقی سوپڕایزی تایبەت</div>
-        <p style="font-size: 12px; color: #b5838d;">داگرە بۆ کردنەوەی پەیامە شاردراوەکە</p>
-        <button class="secret-btn" onclick="toggleSecret()">بیکەرەوە 💌</button>
-        <div id="secretMsg" class="secret-content">
-            🌹 **گوڵم، هەمیشە سوپاسگوزارم کە تۆ لە ژیانمدایت. تۆ باشترین بەشی بیرەوەرییەکانمیت و هیوادارم زەردەخەنە هەرگیز لەسەر لێوەکانت دانەبڕێت!** 🌹
-        </div>
-    </div>
-
-    <!-- پەڕاوێز -->
-    <div class="footer">
-        درستکراوە بە خۆشەویستییەوە بۆ نازدارەکەم 🌷
-    </div>
-
-</div>
-
-<script>
-    function showQuizResult(num) {
-        var res = document.getElementById('quizResult');
-        res.style.display = 'block';
-
-        if(num === 1) {
-            res.innerHTML = "💌 **ئەنجام:** تۆ یەکەم کەسیت لە خەیاڵمدا! چونکە دەزانم تەنها لای تۆ ئارامی و دڵسۆزی ڕاستەقینە دەدۆزمەوە.";
-        } else if(num === 2) {
-            res.innerHTML = "💎 **ئەنجام:** 100% ڕاستگۆیی ڕەها! نێوانمان پرە لە بڕوا و متمانەی بێسنوور کە هیچ شتێک تێکی نادات.";
-        } else if(num === 3) {
-            res.innerHTML = "🤝 **ئەنجام:** من لە تەنیشتت دەبم و بەیەکەوە ڕووبەڕووی تەواوی جیهان دەبینەوە نازدارەکەم!";
-        } else if(num === 4) {
-            res.innerHTML = "🌸 **ئەنجام:** بوون و هاوڕێیەتیت گەورەترین و جوانترین دیارییە کە ژیان پێی بەخشیوم!";
+    <script>
+        function celebrate() {
+            alert('ڕۆژی هاوڕێیەتی لە تۆش پیرۆز بێت! 🌸✨');
         }
-    }
-
-    function toggleSecret() {
-        var msg = document.getElementById('secretMsg');
-        if (msg.style.display === "none" || msg.style.display === "") {
-            msg.style.display = "block";
-        } else {
-            msg.style.display = "none";
-        }
-    }
-</script>
+    </script>
 
 </body>
 </html>
+
