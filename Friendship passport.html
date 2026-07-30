@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رۆژی جیهانی هاوڕێیەتی پیرۆز بێت ✨</title>
+    <title>ڕۆژی جیهانی هاوڕێیەتی ✨</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,19 +14,139 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px 15px;
-            color: #fff;
-            overflow-x: hidden;
+            padding: 20px;
+            overflow: hidden;
             position: relative;
         }
 
-        /* Canvas background for falling particles */
-        #canvas {
+        /* Elements floating in the background */
+        .floating-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 28px;
+            animation: floatAnim 6s ease-in-out infinite alternate;
+            opacity: 0.6;
+        }
+
+        .item1 { top: 10%; left: 15%; animation-delay: 0s; }
+        .item2 { top: 70%; left: 10%; animation-delay: 1s; }
+        .item3 { top: 20%; right: 15%; animation-delay: 2s; }
+        .item4 { top: 75%; right: 20%; animation-delay: 3s; }
+
+        @keyframes floatAnim {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-25px) rotate(15deg); }
+        }
+
+        /* Card container */
+        .card-container {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
+            color: #fff;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Pages logic */
+        .page {
+            display: none;
+            animation: fadeIn 0.6s ease-in-out forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .page-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+            display: inline-block;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #ffd1dc;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #f1f1f1;
+        }
+
+        /* Controls / Buttons */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 117, 140, 0.6);
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-indicator {
+            font-size: 14px;
+            color: #e0e0e0;
+            font-weight: bold;
+        }
+
+        /* Canvas for confetti on last page */
+        #confetti-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -35,133 +156,97 @@
             z-index: 99;
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.07);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 28px;
-            padding: 45px 35px;
-            max-width: 650px;
-            width: 100%;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        .header-icon {
-            font-size: 70px;
-            margin-bottom: 10px;
-            display: inline-block;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        h1 {
-            font-size: 28px;
-            background: linear-gradient(45deg, #ff9a9e, #fecfef, #a1c4fd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 25px;
-            font-weight: 800;
-        }
-
-        .content {
-            font-size: 16px;
-            line-height: 1.9;
-            color: #e0e0e0;
-            text-align: justify;
-            text-align-last: center;
-            margin-bottom: 30px;
-        }
-
-        .content p {
-            margin-bottom: 18px;
-        }
-
-        .quote-box {
-            background: rgba(255, 255, 255, 0.05);
-            border-right: 4px solid #ff758c;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 25px 0;
-            font-style: italic;
-            color: #ffd1dc;
-        }
-
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            background: linear-gradient(45deg, #ff758c, #ff7eb3);
-            color: white;
-            border: none;
-            padding: 14px 32px;
-            font-size: 17px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(255, 117, 140, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(255, 117, 140, 0.6);
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        @media (max-width: 480px) {
-            .container { padding: 30px 20px; }
-            h1 { font-size: 22px; }
-            .content { font-size: 15px; }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="canvas"></canvas>
+    <!-- Dynamic Canvas for Confetti -->
+    <canvas id="confetti-canvas"></canvas>
 
-    <div class="container">
-        <div class="header-icon">🌸✨</div>
-        <h1>رۆژی جیهانی هاوڕێیەتی پیرۆز بێت!</h1>
+    <!-- Floating Background Icons -->
+    <div class="floating-bg">
+        <div class="float-item item1">🌸</div>
+        <div class="float-item item2">✨</div>
+        <div class="float-item item3">💖</div>
+        <div class="float-item item4">🎨</div>
+    </div>
+
+    <!-- Main Card Container -->
+    <div class="card-container">
         
-        <div class="content">
-            <p>
-                هاوڕێی ئازیزم، هەندێک کەس هەن لە ژیاندا کە تەنها هاوڕێ نین، بەڵکو دەبنە بەشێک لە ڕۆح و نەخشەی خۆشییەکانی ژیانت. لە هەموو ئەو ساتانەی کە پێویستم بە تێگەیشتن، پشتیوانی و پێکەنینێک بوو، تۆ هەمیشە لەوێ بوویت.
-            </p>
-            
-            <div class="quote-box">
-                "هاوڕێیەتی ڕاستەقینە وەک ئه‌ستێره‌کان وایه‌؛ سه‌ره‌ڕای تاریکی ژیان، هەمیشە بە ڕووناکی خۆیان ڕێگاکەت بۆ ڕووناک دەکەنەوە."
-            </div>
-
-            <p>
-                سوپاس بۆ ئەوەی بەو شێوازە پاک و جوانەی خۆت لەگەڵمدایت، بۆ ئەوەی هەمیشە گوێگری دڵسۆز و هاوڕێی ڕۆژە سەخت و خۆشەکانم بوویت. هیوادارم ژیانت پڕ بێت لە ئارامی، سەرکەوتن و شادی بەردەوام.
-            </p>
+        <!-- Page 1 -->
+        <div class="page active" id="page1">
+            <div class="page-icon">🤝✨</div>
+            <h2>سڵاو هاوڕێ ئازیزەکەم!</h2>
+            <p>ئەمڕۆ ڕۆژێکی تایبەتە، ڕۆژی جیهانی هاوڕێیەتییە. ویستم بەم کارتە بچووکە چەند وشەیەکی کەم لە دڵمەوە پێشکەشت بکەم...</p>
         </div>
 
-        <div class="btn-group">
-            <button class="btn" onclick="startConfetti()">پیرۆزبایی بکە 🎊</button>
+        <!-- Page 2 -->
+        <div class="page" id="page2">
+            <div class="page-icon">🌟💌</div>
+            <h2>سوپاس بۆ بوونت!</h2>
+            <p>سوپاس بۆ هەموو ئەو ساتانەی کە بەپێکەنین و پشتیوانییەکانت ژیانت بۆ من خۆشتر و ڕەنگینتر کردووە. بوونی تۆ دیارییەکی بەنرخە.</p>
         </div>
+
+        <!-- Page 3 -->
+        <div class="page" id="page3">
+            <div class="page-icon">🎈🌈</div>
+            <h2>هیوای هەرمانی</h2>
+            <p>هیوادارم هەمیشە خەندە لەسەر لێوەکانت بێت و بەردەوام بیت لە درەوشانەوە. هیوادارم هاوڕێیەتییەکەمان تا هەتایە بەردەوام بێت.</p>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page" id="page4">
+            <div class="page-icon">🎉🥳</div>
+            <h2>ڕۆژی هاوڕێیەتی پیرۆز بێت!</h2>
+            <p>تۆ هاوڕێیەکی زۆر تایبەتی! هیوای باشترین ڕۆژ و ئایندەت بۆ دەخوازم 🤍✨</p>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="controls">
+            <button class="btn" id="prevBtn" onclick="changePage(-1)" disabled>پێشوو</button>
+            <span class="page-indicator" id="pageIndicator">1 / 4</span>
+            <button class="btn" id="nextBtn" onclick="changePage(1)">دواتر</button>
+        </div>
+
     </div>
 
     <script>
-        // Confetti effect logic using HTML5 Canvas
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
+        let currentPage = 1;
+        const totalPages = 4;
 
+        function changePage(direction) {
+            // Hide current page
+            document.getElementById(`page${currentPage}`).classList.remove('active');
+
+            // Update page number
+            currentPage += direction;
+
+            // Show new page
+            document.getElementById(`page${currentPage}`).classList.add('active');
+
+            // Update page indicator text
+            document.getElementById('pageIndicator').innerText = `${currentPage} / ${totalPages}`;
+
+            // Handle button states
+            document.getElementById('prevBtn').disabled = (currentPage === 1);
+            
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentPage === totalPages) {
+                nextBtn.innerText = "ئاهەنگ گێڕان 🎉";
+                startConfetti();
+            } else {
+                nextBtn.innerText = "دواتر";
+            }
+        }
+
+        // Simple Confetti effect logic
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
 
@@ -171,78 +256,42 @@
         });
 
         let particles = [];
-        const colors = ['#ff758c', '#ff7eb3', '#fecfef', '#a1c4fd', '#c2e9fb', '#ffd700'];
-        const shapes = ['circle', 'heart', 'star'];
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = -20;
-                this.size = Math.random() * 10 + 6;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.speedY = Math.random() * 3 + 2;
-                this.speedX = Math.random() * 2 - 1;
-                this.rotation = Math.random() * 360;
-                this.rotSpeed = Math.random() * 4 - 2;
-                this.shape = shapes[Math.floor(Math.random() * shapes.length)];
-            }
-
-            update() {
-                this.y += this.speedY;
-                this.x += this.speedX;
-                this.rotation += this.rotSpeed;
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate((this.rotation * Math.PI) / 180);
-                ctx.fillStyle = this.color;
-
-                if (this.shape === 'circle') {
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
-                    ctx.fill();
-                } else {
-                    ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-                }
-
-                ctx.restore();
-            }
-        }
-
-        let isAnimating = false;
+        const colors = ['#ff758c', '#ff7eb3', '#ffd700', '#a1c4fd', '#ffffff'];
 
         function startConfetti() {
-            // Add 100 new particles on each click
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle());
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: -10,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speedY: Math.random() * 3 + 2,
+                    speedX: Math.random() * 2 - 1
+                });
             }
-
-            if (!isAnimating) {
-                isAnimating = true;
-                animate();
-            }
+            animateConfetti();
         }
 
-        function animate() {
+        let animating = false;
+        function animateConfetti() {
             ctx.clearRect(0, 0, width, height);
-
             for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
+                let p = particles[i];
+                p.y += p.speedY;
+                p.x += p.speedX;
 
-                // Remove particles off-screen
-                if (particles[i].y > height) {
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                if (p.y > height) {
                     particles.splice(i, 1);
                     i--;
                 }
             }
-
             if (particles.length > 0) {
-                requestAnimationFrame(animate);
-            } else {
-                isAnimating = false;
+                requestAnimationFrame(animateConfetti);
             }
         }
     </script>
