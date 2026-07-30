@@ -1,299 +1,351 @@
-
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ڕۆژی جیهانی هاوڕێیەتی ✨</title>
+    <title>پاسپۆرتی تایبەتی هاوڕێیەتی</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary: #ff85a2;
+            --secondary: #f72585;
+            --bg: #fff0f5;
+            --card-bg: #ffffff;
+            --text: #4a4a4a;
+            --accent: #ffccd5;
         }
 
         body {
-            background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
-            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px 10px;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            overflow: hidden;
-            position: relative;
+            min-height: 100vh;
         }
 
-        /* Elements floating in the background */
-        .floating-bg {
-            position: absolute;
+        .main-card {
             width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 1;
+            max-width: 550px;
+            background-color: var(--card-bg);
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(247, 37, 133, 0.15);
+            padding: 30px 20px;
+            border: 3px solid var(--accent);
         }
 
-        .float-item {
-            position: absolute;
-            font-size: 28px;
-            animation: floatAnim 6s ease-in-out infinite alternate;
-            opacity: 0.6;
-        }
-
-        .item1 { top: 10%; left: 15%; animation-delay: 0s; }
-        .item2 { top: 70%; left: 10%; animation-delay: 1s; }
-        .item3 { top: 20%; right: 15%; animation-delay: 2s; }
-        .item4 { top: 75%; right: 20%; animation-delay: 3s; }
-
-        @keyframes floatAnim {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-25px) rotate(15deg); }
-        }
-
-        /* Card container */
-        .card-container {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 24px;
-            padding: 40px 30px;
-            max-width: 480px;
-            width: 100%;
+        .header {
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 10;
-            color: #fff;
-            min-height: 380px;
+            border-bottom: 2px dashed #ffb7b2;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: var(--secondary);
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .header p {
+            color: #b5838d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* ڕستە تایبەتەکەی تۆ */
+        .special-quote {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe5ec 100%);
+            border-right: 5px solid var(--secondary);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #d81159;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        /* بەشی کارت / پاسپۆرت */
+        .passport-box {
+            background-color: #fff;
+            border: 2px solid #ffccd5;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 25px;
+        }
+
+        .passport-title {
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ffe5ec;
+            font-size: 14px;
+        }
+
+        .info-label {
+            color: #b5838d;
+            font-weight: bold;
+        }
+
+        .info-val {
+            color: #6d597a;
+            font-weight: bold;
+        }
+
+        /* کارتی بیرەوەرییەکان */
+        .section-title {
+            color: #6d597a;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            text-align: center;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .mini-card {
+            background-color: #fff0f3;
+            border: 1px solid #ffb7b2;
+            padding: 12px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .mini-card:hover {
+            transform: translateY(-3px);
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .mini-card h4 {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .mini-card p {
+            margin: 0;
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        /* یارییەکە */
+        .quiz-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px solid #ffe5ec;
+            margin-bottom: 25px;
+        }
+
+        .options {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        /* Pages logic */
-        .page {
+        .btn-option {
+            background-color: #ffe5ec;
+            color: #6d597a;
+            border: 1px solid #ffc2d1;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .btn-option:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .result-box {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            background-color: #fff0f3;
+            border: 1px dashed var(--secondary);
+            text-align: center;
             display: none;
-            animation: fadeIn 0.6s ease-in-out forwards;
+            color: #800f2f;
+            font-weight: bold;
+            line-height: 1.6;
+            font-size: 14px;
         }
 
-        .page.active {
-            display: block;
+        /* بەشی دیاریی نھێنی */
+        .secret-box {
+            text-align: center;
+            background-color: #fff0f3;
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px dashed #ff85a2;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .page-icon {
-            font-size: 60px;
-            margin-bottom: 15px;
-            animation: pulse 2s infinite;
-            display: inline-block;
-        }
-
-        h2 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #ffd1dc;
-        }
-
-        p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #f1f1f1;
-        }
-
-        /* Controls / Buttons */
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-        }
-
-        .btn {
-            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+        .secret-btn {
+            background-color: var(--secondary);
             color: white;
             border: none;
-            padding: 10px 24px;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 50px;
+            padding: 10px 20px;
+            border-radius: 20px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 117, 140, 0.6);
-        }
-
-        .btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .page-indicator {
-            font-size: 14px;
-            color: #e0e0e0;
             font-weight: bold;
+            margin-top: 10px;
         }
 
-        /* Canvas for confetti on last page */
-        #confetti-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 99;
+        .secret-content {
+            display: none;
+            margin-top: 15px;
+            color: #a31621;
+            font-weight: bold;
+            font-size: 14px;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #b5838d;
         }
     </style>
 </head>
 <body>
 
-    <!-- Dynamic Canvas for Confetti -->
-    <canvas id="confetti-canvas"></canvas>
-
-    <!-- Floating Background Icons -->
-    <div class="floating-bg">
-        <div class="float-item item1">🌸</div>
-        <div class="float-item item2">✨</div>
-        <div class="float-item item3">💖</div>
-        <div class="float-item item4">🎨</div>
+<div class="main-card">
+    
+    <!-- سەردێڕ -->
+    <div class="header">
+        <h1>🌸 پاسپۆرتی هاوڕێیەتی ئەبەدی 🌸</h1>
+        <p>بەکارهێنانی تایبەت بۆ نازدارترین هاوڕێی ژیانم</p>
     </div>
 
-    <!-- Main Card Container -->
-    <div class="card-container">
+    <!-- ڕستە تایبەتەکەت -->
+    <div class="special-quote">
+        "من تۆم زۆر خۆشدەوێت، هەرگیز ئەوە لەبیرنەکەیت. من هەمیشە لەگەڵتم لە هەموو خۆشی و ناخۆشیەکان نازدارەکەم 💖"
+    </div>
+
+    <!-- بەشی زانیاری پاسپۆرتەکە -->
+    <div class="passport-box">
+        <div class="passport-title">📜 زانیارییەکانی پاسپۆرتی هاوڕێیەتی</div>
+        <div class="info-row">
+            <span class="info-label">جۆری پەیوەندی:</span>
+            <span class="info-val">هاوڕێی ڕۆح بە ڕۆح 🌷</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">ئاستی گرنگیدان:</span>
+            <span class="info-val">بێسنوور و هەمیشەیی 💗</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">ماوەی بڕواپێکردن:</span>
+            <span class="info-val">تا هەتا هەتایە ♾️</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">پێگەی لە دڵدا:</span>
+            <span class="info-val">شوێنی تایبەت و جێگیر 👑</span>
+        </div>
+    </div>
+
+    <!-- مۆزەخانەی یادگارییەکان -->
+    <div class="section-title">🎀 گۆشەی بیرەوەری و وەفاداری 🎀</div>
+    <div class="grid-cards">
+        <div class="mini-card" onclick="alert('🌸 تۆ ئەو کەسەی لە ناخۆشترین کاتدا پێکەنین دەخەیتە سەر لێوم!')">
+            <h4>🌷 ڕۆژە خۆشەکان</h4>
+            <p>داگرە بۆ بینینی پەیام</p>
+        </div>
+        <div class="mini-card" onclick="alert('💖 هیچ شتێک ناتوانێت شوێنی تۆ لە ژیانمدا بگرێتەوە نازدارەکەم.')">
+            <h4>👑 بەهای هاوڕێیەتی</h4>
+            <p>داگرە بۆ بینینی پەیام</p>
+        </div>
+        <div class="mini-card" onclick="alert('🤝 لە هەموو قۆناغەکانی ژیاندا پڵپشتم و هەردەم شانازیت پێوە دەکەم.')">
+            <h4>🌺 بەڵێنی بەردەوامی</h4>
+            <p>داگرە بۆ بینینی پەیام</p>
+        </div>
+        <div class="mini-card" onclick="alert('🎀 تۆ تەنها هاوڕێ نیت، بەشێکیت لە خێزان و ڕۆحم!')">
+            <h4>💌 سۆزی شاراوە</h4>
+            <p>داگرە بۆ بینینی پەیام</p>
+        </div>
+    </div>
+
+    <!-- یاریی ئاستی هاوڕێیەتی -->
+    <div class="quiz-box">
+        <div style="text-align: center; font-weight: bold; color: #6d597a;">🎯 تاقیکردنەوەی ئاستی هاوڕێیەتیمان:</div>
+        <p style="text-align: center; font-size: 12px; color: #b5838d;">یەکێک لە بژاردەکان هەڵبژێرە تا وەڵامی تایبەت ببینیت</p>
         
-        <!-- Page 1 -->
-        <div class="page active" id="page1">
-            <div class="page-icon">🤝✨</div>
-            <h2>سڵاو هاوڕێ ئازیزەکەم!</h2>
-            <p>ئەمڕۆ ڕۆژێکی تایبەتە، ڕۆژی جیهانی هاوڕێیەتییە. ویستم بەم کارتە بچووکە چەند وشەیەکی کەم لە دڵمەوە پێشکەشت بکەم...</p>
+        <div class="options">
+            <button class="btn-option" onclick="showQuizResult(1)">🌸 ١. کاتێک دڵت تەنگ دەبێت یەکەم کەس بیر لە کێ دەکەیتەوە؟</button>
+            <button class="btn-option" onclick="showQuizResult(2)">🌷 ٢. تا چەند ڕاستگۆیی لە نێوانماندا هەیە؟</button>
+            <button class="btn-option" onclick="showQuizResult(3)">🎀 ٣. ئەگەر هەموو جیهان دژت بن من لە کوێ دەبم؟</button>
+            <button class="btn-option" onclick="showQuizResult(4)">🌺 ٤. گرنگترین دیاری کە لە تۆوە وەرمگرتبێت چییە؟</button>
         </div>
 
-        <!-- Page 2 -->
-        <div class="page" id="page2">
-            <div class="page-icon">🌟💌</div>
-            <h2>سوپاس بۆ بوونت!</h2>
-            <p>سوپاس بۆ هەموو ئەو ساتانەی کە بەپێکەنین و پشتیوانییەکانت ژیانت بۆ من خۆشتر و ڕەنگینتر کردووە. بوونی تۆ دیارییەکی بەنرخە.</p>
-        </div>
-
-        <!-- Page 3 -->
-        <div class="page" id="page3">
-            <div class="page-icon">🎈🌈</div>
-            <h2>هیوای هەرمانی</h2>
-            <p>هیوادارم هەمیشە خەندە لەسەر لێوەکانت بێت و بەردەوام بیت لە درەوشانەوە. هیوادارم هاوڕێیەتییەکەمان تا هەتایە بەردەوام بێت.</p>
-        </div>
-
-        <!-- Page 4 -->
-        <div class="page" id="page4">
-            <div class="page-icon">🎉🥳</div>
-            <h2>ڕۆژی هاوڕێیەتی پیرۆز بێت!</h2>
-            <p>تۆ هاوڕێیەکی زۆر تایبەتی! هیوای باشترین ڕۆژ و ئایندەت بۆ دەخوازم 🤍✨</p>
-        </div>
-
-        <!-- Navigation Controls -->
-        <div class="controls">
-            <button class="btn" id="prevBtn" onclick="changePage(-1)" disabled>پێشوو</button>
-            <span class="page-indicator" id="pageIndicator">1 / 4</span>
-            <button class="btn" id="nextBtn" onclick="changePage(1)">دواتر</button>
-        </div>
-
+        <div id="quizResult" class="result-box"></div>
     </div>
 
-    <script>
-        let currentPage = 1;
-        const totalPages = 4;
+    <!-- سندوقی نهێنی -->
+    <div class="secret-box">
+        <div style="font-weight: bold; color: #d81159;">🎁 سندوقی سوپڕایزی تایبەت</div>
+        <p style="font-size: 12px; color: #b5838d;">داگرە بۆ کردنەوەی پەیامە شاردراوەکە</p>
+        <button class="secret-btn" onclick="toggleSecret()">بیکەرەوە 💌</button>
+        <div id="secretMsg" class="secret-content">
+            🌹 **گوڵم، هەمیشە سوپاسگوزارم کە تۆ لە ژیانمدایت. تۆ باشترین بەشی بیرەوەرییەکانمیت و هیوادارم زەردەخەنە هەرگیز لەسەر لێوەکانت دانەبڕێت!** 🌹
+        </div>
+    </div>
 
-        function changePage(direction) {
-            // Hide current page
-            document.getElementById(`page${currentPage}`).classList.remove('active');
+    <!-- پەڕاوێز -->
+    <div class="footer">
+        درستکراوە بە خۆشەویستییەوە بۆ نازدارەکەم 🌷
+    </div>
 
-            // Update page number
-            currentPage += direction;
+</div>
 
-            // Show new page
-            document.getElementById(`page${currentPage}`).classList.add('active');
+<script>
+    function showQuizResult(num) {
+        var res = document.getElementById('quizResult');
+        res.style.display = 'block';
 
-            // Update page indicator text
-            document.getElementById('pageIndicator').innerText = `${currentPage} / ${totalPages}`;
-
-            // Handle button states
-            document.getElementById('prevBtn').disabled = (currentPage === 1);
-            
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentPage === totalPages) {
-                nextBtn.innerText = "ئاهەنگ گێڕان 🎉";
-                startConfetti();
-            } else {
-                nextBtn.innerText = "دواتر";
-            }
+        if(num === 1) {
+            res.innerHTML = "💌 **ئەنجام:** تۆ یەکەم کەسیت لە خەیاڵمدا! چونکە دەزانم تەنها لای تۆ ئارامی و دڵسۆزی ڕاستەقینە دەدۆزمەوە.";
+        } else if(num === 2) {
+            res.innerHTML = "💎 **ئەنجام:** 100% ڕاستگۆیی ڕەها! نێوانمان پرە لە بڕوا و متمانەی بێسنوور کە هیچ شتێک تێکی نادات.";
+        } else if(num === 3) {
+            res.innerHTML = "🤝 **ئەنجام:** من لە تەنیشتت دەبم و بەیەکەوە ڕووبەڕووی تەواوی جیهان دەبینەوە نازدارەکەم!";
+        } else if(num === 4) {
+            res.innerHTML = "🌸 **ئەنجام:** بوون و هاوڕێیەتیت گەورەترین و جوانترین دیارییە کە ژیان پێی بەخشیوم!";
         }
+    }
 
-        // Simple Confetti effect logic
-        const canvas = document.getElementById('confetti-canvas');
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
-
-        let particles = [];
-        const colors = ['#ff758c', '#ff7eb3', '#ffd700', '#a1c4fd', '#ffffff'];
-
-        function startConfetti() {
-            for (let i = 0; i < 80; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: -10,
-                    size: Math.random() * 8 + 4,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    speedY: Math.random() * 3 + 2,
-                    speedX: Math.random() * 2 - 1
-                });
-            }
-            animateConfetti();
+    function toggleSecret() {
+        var msg = document.getElementById('secretMsg');
+        if (msg.style.display === "none" || msg.style.display === "") {
+            msg.style.display = "block";
+        } else {
+            msg.style.display = "none";
         }
+    }
+</script>
 
-        let animating = false;
-        function animateConfetti() {
-            ctx.clearRect(0, 0, width, height);
-            for (let i = 0; i < particles.length; i++) {
-                let p = particles[i];
-                p.y += p.speedY;
-                p.x += p.speedX;
-
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-
-                if (p.y > height) {
-                    particles.splice(i, 1);
-                    i--;
-                }
-            }
-            if (particles.length > 0) {
-                requestAnimationFrame(animateConfetti);
-            }
-        }
-    </script>
 </body>
 </html>
